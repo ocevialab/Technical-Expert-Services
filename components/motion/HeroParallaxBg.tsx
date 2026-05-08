@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "./gsap-client";
 
 /** Images to cycle through. Add/remove paths to change the slideshow. */
-const IMAGES = ["/assets/bg3.webp", "/assets/bg4.png", "/assets/bg3.jpg"];
+const IMAGES = ["/assets/bg3.webp", "/assets/bg4.jpg", "/assets/bg3.jpg"];
 
 /** Seconds each image stays fully visible before the crossfade begins. */
 const HOLD_SECONDS = 6;
