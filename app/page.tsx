@@ -7,12 +7,6 @@ import { HeroIntroReveal } from "@/components/motion/HeroIntroReveal";
 import { HeroParallaxBg } from "@/components/motion/HeroParallaxBg";
 import { site, whatsappHref } from "@/lib/site";
 
-const stats = [
-  { value: "15+", label: "Years Combined Experience" },
-  { value: "4.9", label: "Average Customer Rating" },
-  { value: "UAE", label: "Dubai · Sharjah · Ajman" },
-];
-
 const tickerItems = [
   "INTERIOR PAINTING",
   "VILLA PAINTING",
@@ -33,23 +27,23 @@ export default function HomePage() {
           aria-hidden
         />
 
-        <HeroIntroReveal className="relative z-10 flex w-full flex-1 flex-col items-center justify-center px-8 py-12 text-center sm:px-10 sm:py-16 lg:px-14 xl:px-16">
-          <p className="w-full text-base font-semibold uppercase tracking-widest text-white/90 drop-shadow-md sm:text-lg">
+        <HeroIntroReveal className="relative z-10 flex w-full flex-1 flex-col items-start justify-end px-8 pb-14 pt-12 text-left sm:px-10 sm:pb-16 sm:pt-16 lg:px-14 lg:pb-20 xl:px-16">
+          <p className="max-w-3xl text-sm font-semibold uppercase tracking-widest text-white/90 drop-shadow-md sm:text-base">
             {site.tagline}
           </p>
-          <h1 className="mt-5 w-full text-balance text-4xl font-medium leading-[1.1] tracking-tight text-white drop-shadow-md sm:mt-6 sm:text-5xl md:text-6xl lg:text-7xl lg:leading-[1.08]">
+          <h1 className="mt-4 max-w-4xl text-balance text-pretty text-3xl font-medium leading-[1.12] tracking-tight text-white drop-shadow-md sm:mt-5 sm:text-4xl md:max-w-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
             Professional Painting &amp; Plumbing Services in the UAE
           </h1>
-          <p className="mt-7 w-full max-w-4xl text-pretty text-base font-normal leading-relaxed text-white/92 drop-shadow-md sm:mt-8 sm:text-lg md:text-xl">
+          <p className="mt-5 max-w-2xl text-pretty text-sm font-normal leading-relaxed text-white/92 drop-shadow-md sm:mt-6 sm:max-w-2xl sm:text-base md:max-w-3xl md:text-lg">
             Fast, clean, reliable home maintenance for villas, apartments,
             offices, and commercial spaces — one trusted team for paint and
             pipes.
           </p>
 
-          <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+          <div className="mt-8 flex w-full max-w-lg flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-start sm:gap-3">
             <Link
               href="/contact"
-              className="inline-flex min-h-[52px] min-w-[160px] flex-1 items-center justify-center rounded-full bg-yellow-400 px-7 py-4 text-base font-semibold text-brand-navy shadow-sm transition hover:bg-yellow-500 sm:flex-none"
+              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full bg-yellow-400 px-5 py-3 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-yellow-500 sm:flex-none"
             >
               Get Free Quote
             </Link>
@@ -57,29 +51,16 @@ export default function HomePage() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[52px] min-w-[160px] flex-1 items-center justify-center rounded-full border-2 border-white bg-white/10 px-7 py-4 text-base font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-brand-navy sm:flex-none"
+              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full border-2 border-white bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-brand-navy sm:flex-none"
             >
               WhatsApp Us
             </a>
             <a
               href={site.phoneTel}
-              className="inline-flex min-h-[52px] min-w-[160px] flex-1 items-center justify-center rounded-full border-2 border-white/50 bg-transparent px-7 py-4 text-base font-semibold text-white transition hover:border-white hover:bg-white/10 sm:flex-none"
+              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full border-2 border-white/50 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 sm:flex-none"
             >
               Call Now
             </a>
-          </div>
-
-          <div className="mt-16 grid w-full grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
-            {stats.map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <p className="text-4xl font-normal tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
-                  {value}
-                </p>
-                <p className="mt-2 text-sm font-medium uppercase tracking-wide text-white/88 drop-shadow-md sm:text-base">
-                  {label}
-                </p>
-              </div>
-            ))}
           </div>
         </HeroIntroReveal>
 

@@ -81,4 +81,59 @@
   }
 }
 
+@keyframes hero-bg-crossfade-a {
+  0%,
+  37.5% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  50.01%,
+  87.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
+@keyframes hero-bg-crossfade-b {
+  0%,
+  37.5% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  87.5% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-bg-layer-a {
+  animation: hero-bg-crossfade-a 18s ease-in-out infinite;
+}
+
+.hero-bg-layer-b {
+  animation: hero-bg-crossfade-b 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-layer-a,
+  .hero-bg-layer-b {
+    animation: none;
+  }
+
+  .hero-bg-layer-a {
+    opacity: 1;
+  }
+
+  .hero-bg-layer-b {
+    opacity: 0;
+  }
+}

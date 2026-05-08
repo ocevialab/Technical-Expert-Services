@@ -3,28 +3,31 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "./gsap-client";
 
+const BG_A = "/assets/bg3.png";
+const BG_B = "/assets/bg3.jpg";
+
 /**
- * Subtle vertical parallax on the hero photo while the hero scrolls through view.
- * GSAP ScrollTrigger scrub; disabled when prefers-reduced-motion is set.
+ * Hero backgrounds: two full-bleed images with a slow looping cross-fade, plus
+ * subtle vertical parallax on scroll (disabled when prefers-reduced-motion).
  */
 export function HeroParallaxBg() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
-    const img = imgRef.current;
-    if (!root || !img) return;
+    const layer = parallaxRef.current;
+    if (!root || !layer) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
-    gsap.set(img, { scale: 1.06, transformOrigin: "50% 50%" });
+    gsap.set(layer, { scale: 1.06, transformOrigin: "50% 50%" });
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        img,
+        layer,
         { y: 0 },
         {
           y: 36,
@@ -45,9 +48,18 @@ export function HeroParallaxBg() {
   return (
     <div ref={rootRef} className="absolute inset-0 overflow-hidden" aria-hidden>
       <div
-        ref={imgRef}
-        className="absolute inset-[-10%] bg-[url('/assets/bg.jpg')] bg-cover bg-center bg-no-repeat will-change-transform motion-reduce:translate-y-0"
-      />
+        ref={parallaxRef}
+        className="absolute inset-[-10%] will-change-transform motion-reduce:translate-y-0"
+      >
+        <div
+          className="hero-bg-layer-a absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${BG_A})` }}
+        />
+        <div
+          className="hero-bg-layer-b absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${BG_B})` }}
+        />
+      </div>
     </div>
   );
 }
