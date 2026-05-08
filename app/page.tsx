@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HomeAboutTeaser } from "@/components/home/HomeAboutTeaser";
-import { HomeProjectsTeaser } from "@/components/home/HomeProjectsTeaser";
+import { HomeProjectsTeaserClient } from "@/components/home/HomeProjectsTeaserClient";
 import { HomeReviews } from "@/components/home/HomeReviews";
 import { HomeServicesTeaser } from "@/components/home/HomeServicesTeaser";
 import { HeroIntroReveal } from "@/components/motion/HeroIntroReveal";
@@ -84,7 +84,7 @@ export default function HomePage() {
 
       <HomeServicesTeaser />
 
-      <HomeProjectsTeaser />
+      <HomeProjectsTeaserClient />
 
       <HomeReviews />
     </>

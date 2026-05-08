@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Document scroll: both roots participate in some browsers */
+html,
+body {
+  scroll-snap-type: y proximity;
+}
+
 /* Self-hosted sans — variable weight 200–700 (Fontshare / ITF license in bundle) */
 @font-face {
   font-family: "Clash Grotesk";

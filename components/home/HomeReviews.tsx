@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { FaStar } from "react-icons/fa6";
-import { Reveal } from "@/components/motion/Reveal";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { site } from "@/lib/site";
-
-const REVEAL_START = "top bottom-=28%";
 
 type Review = {
   id: string;
@@ -188,10 +185,10 @@ export function HomeReviews() {
   return (
     <section
       id="testimonials"
-      className="overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16"
+      className="min-h-svh scroll-mt-16 overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16 [scroll-snap-align:start] [scroll-snap-stop:always]"
     >
-      <Reveal className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
-        <div className="w-full max-w-full min-w-0">
+      {/* No Reveal/GSAP: scroll-linked y/scale felt like the section sank while it filled the viewport. */}
+      <div className="w-full max-w-full min-w-0">
           <div className="mb-10 flex w-full min-w-0 flex-col gap-5 sm:mb-12 sm:flex-row sm:items-start sm:gap-8 lg:gap-10">
             <div className="flex min-w-0 max-w-lg flex-col space-y-4 lg:max-w-xl">
               <SectionTag>Testimonials</SectionTag>
@@ -230,8 +227,7 @@ export function HomeReviews() {
             Quotes shown as typical client feedback; names and timelines are illustrative. Ask us for references on
             your next project.
           </p>
-        </div>
-      </Reveal>
+      </div>
     </section>
   );
 }
