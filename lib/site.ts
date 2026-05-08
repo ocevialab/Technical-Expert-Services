@@ -16,6 +16,15 @@ export const site = {
   /** Home about teaser — right column snapshot (culture / promise). */
   aboutTeaserShort:
     "We raise the bar on site discipline: shoe covers, dust control, and handovers you can walk through with pride. That standard applies to every crew, every visit — because reputation is the company we keep.",
+  /**
+   * Optional social profile URLs for the footer. Leave empty to show a muted icon (add links when ready).
+   */
+  social: {
+    facebook: "",
+    instagram: "",
+    x: "",
+    tiktok: "",
+  },
 } as const;
 
 export const whatsappHref = `https://wa.me/${site.whatsappDigits}`;

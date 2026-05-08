@@ -1,98 +1,193 @@
 import Link from "next/link";
-import { FaEnvelope, FaPhone } from "react-icons/fa6";
-import { site } from "@/lib/site";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaWhatsapp,
+  FaXTwitter,
+} from "react-icons/fa6";
+import { site, whatsappHref } from "@/lib/site";
 
-const quickLinks = [
+const pageLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/#testimonials", label: "Testimonials" },
+];
+
+const supportLinks = [
+  { href: "/contact", label: "Help" },
+  { href: "/contact", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
-const serviceLinks = [
-  { href: "/services#painting", label: "Painting services" },
-  { href: "/services#plumbing", label: "Plumbing services" },
-  { href: "/contact", label: "Emergency repairs" },
-  { href: "/contact", label: "Maintenance" },
+const legalLinks = [
+  { href: "/privacy", label: "Privacy policy" },
+  { href: "/terms", label: "Terms of service" },
+  { href: "/cookies", label: "Cookies" },
 ];
 
-const areaLinks = [
-  { label: "Dubai" },
-  { label: "Sharjah" },
-  { label: "Ajman" },
-  { label: "JVC" },
-  { label: "Business Bay" },
-];
+function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg
+      width="40"
+      height="40"
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden
+      className={`shrink-0 ${className ?? "text-white"}`}
+    >
+      <circle cx="16" cy="16" r="3" fill="currentColor" />
+      {Array.from({ length: 12 }).map((_, i) => (
+        <rect
+          key={i}
+          x="15"
+          y="2"
+          width="2"
+          height="8"
+          rx="1"
+          fill="currentColor"
+          transform={`rotate(${i * 30} 16 16)`}
+        />
+      ))}
+    </svg>
+  );
+}
+
+function SocialIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  const base =
+    "flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400";
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        className={`${base} border-yellow-400 text-yellow-400 hover:bg-white/10 hover:text-yellow-300`}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <span
+      className={`${base} cursor-default border-white/25 text-white/35`}
+      title={`${label} — add URL in lib/site.ts`}
+      aria-label={`${label} (link not configured)`}
+    >
+      {children}
+    </span>
+  );
+}
+
+function LinkColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: readonly { href: string; label: string }[];
+}) {
+  return (
+    <div>
+      <h3 className="mb-4 text-sm font-semibold text-white">{title}</h3>
+      <ul className="space-y-2.5 text-sm text-primary-100/90">
+        {links.map(({ href, label }) => (
+          <li key={`${href}-${label}`}>
+            <Link href={href} className="transition-colors hover:text-white">
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
+  const { social } = site;
+  const watermark = site.brand.split(/\s+/).slice(0, 2).join(" ").toUpperCase();
+
   return (
-    <footer className="mt-auto border-t border-primary-200 bg-primary-100/90 text-brand-navy/80">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-12 xl:px-16">
-        <div>
-          <h3 className="mb-1 text-lg font-normal text-brand-navy">{site.brand}</h3>
-          <p className="text-xs font-medium text-primary-700/80">{site.brandFull}</p>
-          <p className="mt-3 text-sm leading-relaxed">
-            Premium painting and plumbing for UAE homes and businesses. Clear pricing, tidy crews,
-            and fast response when it matters.
-          </p>
-          <ul className="mt-4 space-y-1.5 text-sm">
-            <li>
-              <a href={site.phoneTel} className="inline-flex items-center gap-2 hover:text-brand-navy">
-                <FaPhone className="h-4 w-4 shrink-0 text-primary-700" aria-hidden />
+    <footer className="relative mt-auto w-full overflow-hidden bg-brand-navy text-white">
+      <div className="relative z-10 w-full px-8 pt-12 pb-32 sm:px-10 sm:pt-14 sm:pb-36 lg:px-14 lg:pb-40 xl:px-16">
+        <div className="flex w-full flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+          <div className="max-w-md shrink-0">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 rounded-xl outline-offset-4"
+            >
+              <LogoMark />
+              <span className="text-lg font-semibold tracking-tight text-white">
+                {site.brand}
+              </span>
+            </Link>
+            <p className="mt-4 text-sm leading-relaxed text-primary-100/90">
+              {site.description}
+            </p>
+            <p className="mt-3 text-xs text-primary-200/80">{site.areas}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <SocialIcon href={social.facebook} label="Facebook">
+                <FaFacebookF className="h-4 w-4" aria-hidden />
+              </SocialIcon>
+              <SocialIcon href={social.instagram} label="Instagram">
+                <FaInstagram className="h-4 w-4" aria-hidden />
+              </SocialIcon>
+              <SocialIcon href={whatsappHref} label="WhatsApp">
+                <FaWhatsapp className="h-4 w-4" aria-hidden />
+              </SocialIcon>
+              <SocialIcon href={social.x} label="X">
+                <FaXTwitter className="h-4 w-4" aria-hidden />
+              </SocialIcon>
+              <SocialIcon href={social.tiktok} label="TikTok">
+                <FaTiktok className="h-4 w-4" aria-hidden />
+              </SocialIcon>
+            </div>
+            <p className="relative z-20 mt-6 text-xs text-primary-200/90 sm:mt-7">
+              <a
+                href={`tel:${site.phoneTel}`}
+                className="font-medium text-white hover:underline"
+              >
                 {site.phoneDisplay}
               </a>
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-brand-navy">
-                <FaEnvelope className="h-4 w-4 shrink-0 text-primary-700" aria-hidden />
+              <span className="mx-2 text-primary-300/80" aria-hidden>
+                ·
+              </span>
+              <a
+                href={`mailto:${site.email}`}
+                className="font-medium text-white hover:underline"
+              >
                 {site.email}
               </a>
-            </li>
-          </ul>
-        </div>
+            </p>
+          </div>
 
-        <div>
-          <h3 className="mb-3 text-sm font-normal uppercase tracking-wide text-brand-navy">Quick links</h3>
-          <ul className="space-y-2 text-sm">
-            {quickLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link href={href} className="transition-colors hover:text-brand-navy">
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-3 text-sm font-normal uppercase tracking-wide text-brand-navy">Services</h3>
-          <ul className="space-y-2 text-sm">
-            {serviceLinks.map(({ href, label }) => (
-              <li key={label}>
-                <Link href={href} className="transition-colors hover:text-brand-navy">
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-3 text-sm font-normal uppercase tracking-wide text-brand-navy">Service areas</h3>
-          <p className="mb-2 text-sm text-primary-800/70">{site.areas}</p>
-          <ul className="flex flex-wrap gap-2 text-xs text-brand-navy/85">
-            {areaLinks.map(({ label }) => (
-              <li key={label}>
-                <span className="rounded-full bg-white px-2.5 py-1 ring-1 ring-primary-200">{label}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="grid w-full max-w-xl grid-cols-2 gap-10 sm:grid-cols-3 sm:gap-12 lg:max-w-none lg:justify-end">
+            <LinkColumn title="Pages" links={pageLinks} />
+            <LinkColumn title="Support" links={supportLinks} />
+            <LinkColumn title="Legal" links={legalLinks} />
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-primary-200 py-4 text-center text-xs text-primary-800/70">
+      <div
+        className="pointer-events-none absolute bottom-12 left-1/2 z-0 w-[120%] max-w-none -translate-x-1/2 select-none text-center font-sans text-[clamp(2.75rem,14vw,9rem)] font-black leading-none tracking-[0.06em] text-white/[0.07] [word-spacing:0.14em] sm:bottom-14"
+        aria-hidden
+      >
+        {watermark}
+      </div>
+
+      <div className="relative z-10 w-full border-t border-white/10 px-8 py-4 text-center text-xs text-primary-100/85 sm:px-10 lg:px-14 xl:px-16">
         © {new Date().getFullYear()} {site.brand}. All rights reserved.
       </div>
     </footer>

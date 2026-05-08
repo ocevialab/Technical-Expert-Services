@@ -186,7 +186,10 @@ function MarqueeRow({
 
 export function HomeReviews() {
   return (
-    <section className="overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
+    <section
+      id="testimonials"
+      className="overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16"
+    >
       <Reveal className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
         <div className="w-full max-w-full min-w-0">
           <div className="mb-10 flex flex-col gap-6 sm:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
