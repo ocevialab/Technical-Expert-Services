@@ -192,28 +192,30 @@ export function HomeReviews() {
     >
       <Reveal className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
         <div className="w-full max-w-full min-w-0">
-          <div className="mb-10 flex flex-col gap-6 sm:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-            <div className="max-w-2xl space-y-4">
+          <div className="mb-10 flex w-full min-w-0 flex-col gap-5 sm:mb-12 sm:flex-row sm:items-start sm:gap-8 lg:gap-10">
+            <div className="flex min-w-0 max-w-lg flex-col space-y-4 lg:max-w-xl">
               <SectionTag>Testimonials</SectionTag>
-              <h2 className="text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]">
+              <h2 className="min-w-0 max-w-full text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]">
                 <span className="block">What our</span>
                 <span className="mt-1 block text-brand-navy/72 sm:mt-2">customers are saying</span>
               </h2>
-              <p className="max-w-xl text-pretty text-base leading-relaxed text-neutral-600 sm:text-lg">
-                Real feedback from painting and plumbing clients across {site.areas}. Every job is quoted clearly and
-                finished with the same site standards we expect for our own homes.
-              </p>
             </div>
-            <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-primary-100 bg-white px-5 py-4 sm:gap-8 sm:px-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Average rating</p>
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="flex gap-0.5" aria-hidden>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <FaStar key={i} className="h-4 w-4 text-yellow-400" />
-                    ))}
+            <p className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg lg:max-w-lg">
+              Real feedback from painting and plumbing clients across {site.areas}. Every job is quoted clearly and
+              finished with the same site standards we expect for our own homes.
+            </p>
+            <div className="ml-auto flex shrink-0 sm:pt-0.5">
+              <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-primary-100 bg-white px-5 py-4 sm:gap-8 sm:px-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Average rating</p>
+                  <div className="mt-1 flex items-center gap-2">
+                    <div className="flex gap-0.5" aria-hidden>
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <FaStar key={i} className="h-4 w-4 text-yellow-400" />
+                      ))}
+                    </div>
+                    <span className="text-lg font-semibold text-brand-navy">4.9</span>
                   </div>
-                  <span className="text-lg font-semibold text-brand-navy">4.9</span>
                 </div>
               </div>
             </div>
