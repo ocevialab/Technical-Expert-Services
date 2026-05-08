@@ -21,9 +21,8 @@ export default function HomePage() {
     <>
       <section className="relative -mt-16 flex min-h-dvh flex-col pt-24 sm:pt-28">
         <HeroParallaxBg />
-        {/* Dark scrim — uniform enough contrast for white type over bright areas (hand, roller) */}
         <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/68 via-black/58 to-black/80"
+          className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/50 via-black/40 to-black/62"
           aria-hidden
         />
 
@@ -31,15 +30,13 @@ export default function HomePage() {
           <p className="max-w-3xl text-sm font-semibold uppercase tracking-widest text-white/90 drop-shadow-md sm:text-base">
             {site.tagline}
           </p>
-          <h1 className="mt-4 max-w-4xl text-balance text-pretty text-3xl font-medium leading-[1.12] tracking-tight text-white drop-shadow-md sm:mt-5 sm:text-4xl md:max-w-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
+          <h1 className="mt-4 max-w-4xl text-balance text-3xl font-medium leading-[1.12] tracking-tight text-white drop-shadow-md sm:mt-5 sm:text-4xl md:max-w-4xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
             Professional Painting &amp; Plumbing Services in the UAE
           </h1>
           <p className="mt-5 max-w-2xl text-pretty text-sm font-normal leading-relaxed text-white/92 drop-shadow-md sm:mt-6 sm:max-w-2xl sm:text-base md:max-w-3xl md:text-lg">
             Fast, clean, reliable home maintenance for villas, apartments,
-            offices, and commercial spaces — one trusted team for paint and
-            pipes.
+            offices, and commercial spaces — one trusted team for paint and pipes.
           </p>
-
           <div className="mt-8 flex w-full max-w-lg flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-start sm:gap-3">
             <Link
               href="/contact"
@@ -64,7 +61,7 @@ export default function HomePage() {
           </div>
         </HeroIntroReveal>
 
-        <div className="relative z-10 mt-auto w-full overflow-hidden bg-yellow-400 py-3.5 px-8 sm:px-10 lg:px-14 xl:px-16">
+        <div className="relative z-10 mt-auto w-full overflow-hidden bg-yellow-400 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16">
           <div className="flex w-max animate-marquee motion-reduce:animate-none">
             {[0, 1].map((copy) => (
               <div
@@ -72,10 +69,7 @@ export default function HomePage() {
                 className="flex shrink-0 items-center gap-3 px-6 text-sm font-normal uppercase tracking-wide text-brand-navy sm:text-base"
               >
                 {tickerItems.map((item, i) => (
-                  <span
-                    key={`${copy}-${item}`}
-                    className="flex items-center gap-3"
-                  >
+                  <span key={`${copy}-${item}`} className="flex items-center gap-3">
                     {i > 0 && <span className="text-brand-navy">•</span>}
                     <span>{item}</span>
                   </span>

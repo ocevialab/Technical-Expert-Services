@@ -9,7 +9,8 @@ type HeroIntroRevealProps = {
 };
 
 /**
- * One-shot hero column entrance (opacity + lift + light scale). GSAP on mount; respects reduced motion.
+ * Staggers each direct child row in from below, one after the other.
+ * Uses GSAP on mount; respects prefers-reduced-motion.
  */
 export function HeroIntroReveal({ children, className = "" }: HeroIntroRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,15 +23,18 @@ export function HeroIntroReveal({ children, className = "" }: HeroIntroRevealPro
       return;
     }
 
-    gsap.set(el, { opacity: 0, y: 48, scale: 0.97 });
+    const rows = Array.from(el.children) as HTMLElement[];
+
+    gsap.set(rows, { opacity: 0, y: 36 });
+
     const ctx = gsap.context(() => {
-      gsap.to(el, {
+      gsap.to(rows, {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 1.3,
+        duration: 0.9,
         ease: "power3.out",
-        delay: 0.08,
+        stagger: 0.13,
+        delay: 0.1,
       });
     }, el);
 
@@ -38,7 +42,7 @@ export function HeroIntroReveal({ children, className = "" }: HeroIntroRevealPro
   }, []);
 
   return (
-    <div ref={ref} className={`transform-gpu will-change-[opacity,transform] ${className}`}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

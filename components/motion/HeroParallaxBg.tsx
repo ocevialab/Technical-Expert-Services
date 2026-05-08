@@ -3,12 +3,18 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "./gsap-client";
 
-const BG_A = "/assets/bg3.png";
-const BG_B = "/assets/bg3.jpg";
+/** Images to cycle through. Add/remove paths to change the slideshow. */
+const IMAGES = ["/assets/bg3.webp", "/assets/bg4.png", "/assets/bg3.jpg"];
+
+/** Seconds each image stays fully visible before the crossfade begins. */
+const HOLD_SECONDS = 6;
+/** Seconds the crossfade transition takes. */
+const FADE_SECONDS = 1.8;
 
 /**
- * Hero backgrounds: two full-bleed images with a slow looping cross-fade, plus
- * subtle vertical parallax on scroll (disabled when prefers-reduced-motion).
+ * Hero background: stacked images that cross-fade in a loop via GSAP,
+ * with a subtle scroll-parallax on the whole layer.
+ * Fully disabled when prefers-reduced-motion is set.
  */
 export function HeroParallaxBg() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -19,13 +25,45 @@ export function HeroParallaxBg() {
     const layer = parallaxRef.current;
     if (!root || !layer) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    gsap.set(layer, { scale: 1.06, transformOrigin: "50% 50%" });
+    const slides = Array.from(
+      layer.querySelectorAll<HTMLElement>("[data-slide]"),
+    );
 
     const ctx = gsap.context(() => {
+      // ── Crossfade loop ──────────────────────────────────────────────────
+      if (slides.length > 1) {
+        gsap.set(slides, { opacity: 0 });
+        gsap.set(slides[0], { opacity: 1 });
+
+        const tl = gsap.timeline({ repeat: -1 });
+        slides.forEach((_, i) => {
+          const next = (i + 1) % slides.length;
+          // hold, then swap
+          tl.to(
+            slides[next],
+            {
+              opacity: 1,
+              duration: FADE_SECONDS,
+              ease: "power1.inOut",
+            },
+            `+=${HOLD_SECONDS}`,
+          );
+          tl.to(
+            slides[i],
+            {
+              opacity: 0,
+              duration: FADE_SECONDS,
+              ease: "power1.inOut",
+            },
+            "<",
+          );
+        });
+      }
+
+      // ── Parallax on scroll ──────────────────────────────────────────────
+      gsap.set(layer, { scale: 1.06, transformOrigin: "50% 50%" });
       gsap.fromTo(
         layer,
         { y: 0 },
@@ -38,7 +76,7 @@ export function HeroParallaxBg() {
             end: "bottom top",
             scrub: 0.75,
           },
-        }
+        },
       );
     }, root);
 
@@ -51,14 +89,17 @@ export function HeroParallaxBg() {
         ref={parallaxRef}
         className="absolute inset-[-10%] will-change-transform motion-reduce:translate-y-0"
       >
-        <div
-          className="hero-bg-layer-a absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${BG_A})` }}
-        />
-        <div
-          className="hero-bg-layer-b absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${BG_B})` }}
-        />
+        {IMAGES.map((src, i) => (
+          <div
+            key={src}
+            data-slide
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${src})`,
+              opacity: i === 0 ? 1 : 0,
+            }}
+          />
+        ))}
       </div>
     </div>
   );
