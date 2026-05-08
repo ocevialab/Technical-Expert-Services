@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Self-hosted sans — variable weight 200–700 (Fontshare / ITF license in bundle) */
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("/font/ClashGrotesk_Complete/ClashGrotesk_Complete/Fonts/WEB/fonts/ClashGrotesk-Variable.woff2")
+    format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Page surface — very light blue, close to white */
+  --color-background: #e7f5ff;
+  /* Primary ink for body + UI on light surfaces (nav dark mode, headings, links tone) */
+  --color-brand-navy: #051f32;
+  --color-foreground: #051f32;
+
+  /* Primary (blue) scale */
+  --color-primary-50: #e7f5ff;
+  --color-primary-100: #d0ebff;
+  --color-primary-200: #a5d8ff;
+  --color-primary-300: #74c0fc;
+  --color-primary-400: #4dabf7;
+  --color-primary-500: #339af0;
+  --color-primary-600: #228be6;
+  --color-primary-700: #1c7ed6;
+  --color-primary-800: #1971c2;
+  --color-primary-900: #1864ab;
+
+  /* Yellow / amber accent scale */
+  --color-yellow-50: #fff9db;
+  --color-yellow-100: #fff3bf;
+  --color-yellow-200: #ffec99;
+  --color-yellow-300: #ffe066;
+  --color-yellow-400: #ffd43b;
+  --color-yellow-500: #fcc419;
+  --color-yellow-600: #fab005;
+  --color-yellow-700: #f59f00;
+  --color-yellow-800: #f08c00;
+  --color-yellow-900: #e67700;
+
+  --font-sans: "Clash Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --animate-marquee: hero-marquee 32s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  h1,
+  h2 {
+    font-family: var(--font-serif);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
+
+/* Home reviews: bottom row scrolls left; top row scrolls right (seamless duplicate track). */
+@keyframes reviews-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes reviews-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+

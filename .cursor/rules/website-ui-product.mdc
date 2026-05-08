@@ -1,0 +1,53 @@
+---
+description: UI/UX and product standards for UAE Painting & Plumbing site (PDF plan + modern clean visual language)
+alwaysApply: true
+---
+
+# Website UI & product (use intelligently)
+
+This project is a **lead-generation** site for **painting & plumbing in the UAE**: professional, trustworthy, fast, mobile-first. **Do not** treat every bullet in the source plan as mandatory in every change—use it as a **north star**: prioritize conversion clarity, performance, and a premium service-company feel over feature stuffing.
+
+## When you change UI or content
+
+- **Primary goal:** make it easy to **call, WhatsApp, or request a quote** (and later: booking / photo upload where forms exist).
+- **Audience:** UAE customers—tone is clear, respectful, businesslike; avoid gimmicky or cluttered layouts.
+- **Apply selectively:** add sections, animations, or components only when they serve the page’s purpose; skip decorative complexity.
+
+## Visual language (reference: clean “Ridge”-style modern web)
+
+- **Overall:** lots of whitespace, **clear hierarchy** (one strong headline, supporting line, then actions). Feels **current**, not dated or “template-heavy.”
+- **Backgrounds:** prefer **soft light gradients** (e.g. sky-to-white) or clean off-white—not busy patterns or heavy full-bleed color blocks unless intentional.
+- **Text:** high-contrast body copy (dark on light); avoid low-contrast gray walls of text.
+- **Brand ink (`#051F32`):** use Tailwind **`text-brand-navy`** / **`bg-brand-navy`** / **`border-brand-navy`** (from `@theme` `--color-brand-navy`) for **primary text on light backgrounds**—page titles, section headings, card titles, body default (`text-foreground`), and **navbar copy when the bar is on a light surface** (not over the transparent hero). Prefer this over `text-neutral-900` / `text-gray-800` for main reading color. On **yellow CTA fills**, use **`text-brand-navy`** (or `text-neutral-900`) for strong contrast.
+- **Accent:** **one bright accent** for primary CTAs (PDF: **yellow / orange** on **blue & white** base). Secondary actions: **outline** or subtle neutral—never compete with the main CTA.
+- **Shape:** **rounded** buttons and cards (`rounded-xl` / generous radius); cards with light border or soft shadow, not harsh frames.
+- **Header:** **sticky**, simple: logo left, nav readable, **one prominent right CTA** (e.g. “Get Free Quote”). Mobile: compact menu; plan for **sticky call affordance** and **floating WhatsApp** where product allows.
+- **Optional patterns** when they fit: a slim **full-width accent band** (e.g. service keywords / ticker), a **stats row** for trust—keep typography calm and aligned.
+
+## Content & UX rules
+
+- **Home and landings:** structured sections with **scannable** copy; **avoid long paragraphs**—use bullets, short blurbs, and **visual proof** (gallery, before/after, reviews) over text alone.
+- **Trust:** reviews, areas served, process steps, and guarantees belong where they **support** the user’s next step (contact / quote).
+- **Forms:** minimal required fields; clear labels; service type and location where relevant; **photo upload** on contact when implemented.
+- **Performance:** optimize images/video; hero video if used: **muted, loop, overlay** for readable text; don’t block LCP with unoptimized media.
+- **SEO:** sensible heading order and area/service phrases where pages target them (e.g. service areas page)—without keyword stuffing.
+
+## Technical defaults (Next.js in this repo)
+
+- Prefer **accessible** semantics (landmarks, button vs div, focus states).
+- **Animations:** subtle (opacity, transform); respect `prefers-reduced-motion` where easy.
+- Match existing stack patterns in the repo; don’t introduce heavy UI kits unless the user asks.
+
+## Motion & scroll (keep it restrained)
+
+- **Principle:** motion should feel **professional and calm**—support hierarchy and focus, not decoration. **Prefer fewer, stronger moves** over many small effects.
+- **Scroll reveals:** use the shared **`Reveal`** pattern (`components/motion/Reveal.tsx`) — **GSAP + ScrollTrigger** with **`toggleActions: "play reverse play reverse"`** so sections **animate in when entering view and reverse when leaving** (replays each pass). Use for **major sections below the fold** only (e.g. one reveal per logical block). **Do not** wrap every paragraph or list item. Optional **stagger** only when it clearly helps (e.g. short card grids); default stagger delay **≤ ~80ms** between items if used.
+- **Timing:** keep entrances **calm and slow**—about **~1.1s** for section reveals and the hero intro (`ease: "power3.out"` in GSAP). Avoid snappy sub-600ms fades for large blocks unless there is a specific reason.
+- **Library:** use **GSAP** (`gsap`) with **ScrollTrigger** for scroll-linked motion (`Reveal`, `HeroParallaxBg`). Register the plugin once via `components/motion/gsap-client.ts`. Prefer **`gsap.context` + `ctx.revert()`** in effects for cleanup. Do not add other animation libraries unless the user asks.
+- **Hero:** first screen may use a **single** entrance via **`HeroIntroReveal`** and/or **light parallax** on the hero image via **`HeroParallaxBg`**. Parallax must be **subtle** (small translate / scale, modest `scrub`) and **disabled** when `prefers-reduced-motion: reduce`.
+- **Avoid:** bounce springs, long delays, looping attention-grabbing animations, parallax on body text or whole pages, layout-thrashing scroll handlers (GSAP handles rAF internally; avoid extra scroll listeners for the same effect).
+- **Performance:** don’t animate large shadows or expensive properties beyond `opacity` and `transform`; keep **one scroll listener** per effect where possible.
+
+## Source of truth
+
+Requirements are summarized from **`Website UI Development.pdf`** (painting & plumbing scope, page list, global features, footer columns, UAE positioning). The **Ridge-style reference image** in the project assets illustrates the **calm, spacious, accent-driven** layout we want—not a literal copy of another brand’s name or logo.
