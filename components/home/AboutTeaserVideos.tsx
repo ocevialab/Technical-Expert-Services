@@ -35,7 +35,7 @@ export function AboutTeaserVideos() {
   }, [autoplay, clip.src]);
 
   return (
-    <div className="flex h-full min-h-64 w-full flex-col overflow-hidden rounded-2xl border border-primary-100 bg-neutral-950 shadow-sm sm:min-h-72 md:h-full">
+    <div className="flex h-full min-h-64 w-full flex-col overflow-hidden rounded-2xl border border-primary-100 bg-neutral-950 shadow-card sm:min-h-72 md:h-full">
       <div className="relative min-h-52 w-full flex-1 overflow-hidden bg-neutral-900 sm:min-h-56 md:min-h-64 lg:min-h-72">
         <video
           key={clip.src}

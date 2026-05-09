@@ -270,7 +270,7 @@ export function HomeProjectsTeaser() {
                 className="flex shrink-0 snap-start flex-col"
                 title={`${project.title}: ${project.desc}`}
               >
-                <div className="flex h-[398px] w-[min(280px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-[0_22px_50px_-18px_rgba(5,31,50,0.16),0_10px_22px_-12px_rgba(5,31,50,0.08)] sm:h-[412px] sm:w-[320px] sm:rounded-3xl">
+                <div className="flex h-[398px] w-[min(280px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-card sm:h-[412px] sm:w-[320px] sm:rounded-3xl">
                   <ProjectCompareCard project={project} />
                   <div className="flex min-h-0 flex-1 flex-col border-t border-primary-100/90 px-4 pb-4 pt-3 text-left sm:px-5 sm:pb-5 sm:pt-4">
                     <h3 className="line-clamp-2 text-lg font-normal leading-snug text-brand-navy sm:text-xl">

@@ -37,7 +37,7 @@ function StarRow({ rating }: { rating: number }) {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <article className="w-[min(100vw-2rem,300px)] shrink-0 rounded-2xl border border-primary-100 bg-white p-5 shadow-sm sm:w-[320px]">
+    <article className="w-[min(100vw-2rem,300px)] shrink-0 rounded-2xl border border-primary-100 bg-white p-5 shadow-card sm:w-[320px]">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <div
@@ -202,7 +202,7 @@ export function HomeReviews() {
               finished with the same site standards we expect for our own homes.
             </p>
             <div className="ml-auto flex shrink-0 sm:pt-0.5">
-              <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-primary-100 bg-white px-5 py-4 sm:gap-8 sm:px-6">
+              <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-primary-100 bg-white px-5 py-4 shadow-card sm:gap-8 sm:px-6">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Average rating</p>
                   <div className="mt-1 flex items-center gap-2">

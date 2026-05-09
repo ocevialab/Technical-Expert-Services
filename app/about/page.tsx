@@ -74,7 +74,7 @@ export default function AboutPage() {
             {team.map(({ name, role, years }) => (
               <div
                 key={name}
-                className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md"
+                className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-card transition-shadow hover:shadow-card-hover"
               >
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-700">
                   <FaHelmetSafety className="h-8 w-8" aria-hidden />

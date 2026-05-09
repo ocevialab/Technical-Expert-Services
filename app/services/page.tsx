@@ -111,7 +111,7 @@ function ServiceCard({
   desc: string;
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-primary-100 bg-white p-6 transition-shadow hover:shadow-lg">
+    <div className="flex flex-col rounded-2xl border border-primary-100 bg-white p-6 shadow-card transition-shadow hover:shadow-card-hover">
       <div className="mb-4 text-primary-700">
         <Icon className="h-9 w-9" aria-hidden />
       </div>

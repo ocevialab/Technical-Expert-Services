@@ -146,7 +146,7 @@ export function HomeServicesTeaser() {
             ref={scrollerRef}
             className="flex min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:gap-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            <article className="hidden w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border-2 border-brand-asset/35 bg-brand-asset shadow-sm sm:flex sm:w-[360px]">
+            <article className="hidden w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border-2 border-brand-asset/35 bg-brand-asset shadow-card sm:flex sm:w-[360px]">
               <div className="flex flex-1 flex-col p-7 pb-6">
                 <p className="text-sm font-normal uppercase tracking-wide text-accent-200">Call now</p>
                 <p className="mt-3 text-base font-semibold leading-snug text-white/90 sm:text-lg">
@@ -178,7 +178,7 @@ export function HomeServicesTeaser() {
             {services.map(({ title, desc, href, imagePosition, imageAlt }) => (
               <article
                 key={title}
-                className="flex w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-sm sm:w-[360px]"
+                className="flex w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-card sm:w-[360px]"
               >
                 <div className="flex flex-1 flex-col p-7 pb-4">
                   <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{title}</h3>

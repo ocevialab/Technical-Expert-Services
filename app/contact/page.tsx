@@ -89,7 +89,7 @@ export default function ContactPage() {
               </li>
             </ul>
 
-            <div className="mt-8 rounded-2xl border border-primary-100 bg-primary-50 p-5">
+            <div className="mt-8 rounded-2xl border border-primary-100 bg-primary-50 p-5 shadow-card">
               <p className="mb-1 flex items-center gap-2 font-normal text-brand-navy">
                 <FaTriangleExclamation className="h-5 w-5 shrink-0 text-amber-600" aria-hidden />
                 Active leak or flooding?
@@ -120,7 +120,7 @@ export default function ContactPage() {
           <div>
             <h2 className="mb-6 text-2xl font-normal text-brand-navy">Submit request</h2>
             {submitted ? (
-              <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
+              <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center shadow-card">
                 <div className="mb-4 flex justify-center text-green-700">
                   <FaCircleCheck className="h-12 w-12" aria-hidden />
                 </div>

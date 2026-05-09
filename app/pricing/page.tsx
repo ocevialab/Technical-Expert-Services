@@ -33,7 +33,7 @@ export default function PricingPage() {
           {packages.map(({ name, desc, note }) => (
             <li
               key={name}
-              className="rounded-2xl border border-neutral-200 bg-neutral-50/80 p-6 text-left shadow-sm"
+              className="rounded-2xl border border-neutral-200 bg-neutral-50/80 p-6 text-left shadow-card"
             >
               <h2 className="text-lg font-normal text-brand-navy">{name}</h2>
               <p className="mt-2 text-sm text-neutral-600">{desc}</p>
