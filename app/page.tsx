@@ -60,25 +60,29 @@ export default function HomePage() {
             </a>
           </div>
         </HeroIntroReveal>
-
-        <div className="relative z-10 mt-auto w-full overflow-hidden bg-accent-200 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16">
-          <div className="flex w-max animate-marquee motion-reduce:animate-none">
-            {[0, 1].map((copy) => (
-              <div
-                key={copy}
-                className="flex shrink-0 items-center gap-3 px-6 text-sm font-normal uppercase tracking-wide text-brand-navy sm:text-base"
-              >
-                {tickerItems.map((item, i) => (
-                  <span key={`${copy}-${item}`} className="flex items-center gap-3">
-                    {i > 0 && <span className="text-brand-navy">•</span>}
-                    <span>{item}</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
+
+      <div
+        className="w-full overflow-hidden bg-accent-200 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16"
+        role="region"
+        aria-label="Services highlight"
+      >
+        <div className="flex w-max animate-marquee motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className="flex shrink-0 items-center gap-3 px-6 text-sm font-normal uppercase tracking-wide text-brand-navy sm:text-base"
+            >
+              {tickerItems.map((item, i) => (
+                <span key={`${copy}-${item}`} className="flex items-center gap-3">
+                  {i > 0 && <span className="text-brand-navy">•</span>}
+                  <span>{item}</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
 
       <HomeAboutTeaser />
 
