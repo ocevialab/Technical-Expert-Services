@@ -21,7 +21,6 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/pricing", label: "Pricing" },
 ];
 
 function LogoMark({ className }: { className?: string }) {
