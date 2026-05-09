@@ -40,7 +40,7 @@ export default function HomePage() {
           <div className="mt-8 flex w-full max-w-lg flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-start sm:gap-3">
             <Link
               href="/contact"
-              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full bg-yellow-400 px-5 py-3 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-yellow-500 sm:flex-none"
+              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full bg-brand-asset px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-600 sm:flex-none"
             >
               Get Free Quote
             </Link>
@@ -61,7 +61,7 @@ export default function HomePage() {
           </div>
         </HeroIntroReveal>
 
-        <div className="relative z-10 mt-auto w-full overflow-hidden bg-yellow-400 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16">
+        <div className="relative z-10 mt-auto w-full overflow-hidden bg-accent-200 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16">
           <div className="flex w-max animate-marquee motion-reduce:animate-none">
             {[0, 1].map((copy) => (
               <div

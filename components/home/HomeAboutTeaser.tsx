@@ -44,14 +44,14 @@ export function HomeAboutTeaser() {
             </p>
           </div>
 
-          <div className="flex flex-col justify-center rounded-2xl border border-brand-navy/90 bg-brand-navy p-8 shadow-sm sm:p-10">
+          <div className="flex flex-col justify-center rounded-2xl border border-brand-asset/90 bg-brand-asset p-8 shadow-sm sm:p-10">
             <p className="text-pretty text-base font-normal leading-relaxed text-white/90 sm:text-lg">
               {site.aboutTeaserShort}
             </p>
             <p className="mt-8">
               <Link
                 href="/about"
-                className="text-sm font-semibold text-yellow-300 underline-offset-4 hover:text-yellow-200 hover:underline sm:text-base"
+                className="text-sm font-semibold text-accent-200 underline-offset-4 hover:text-white hover:underline sm:text-base"
               >
                 About {site.brand} →
               </Link>
@@ -63,7 +63,7 @@ export function HomeAboutTeaser() {
       <Reveal className="mt-12 w-full md:mt-14" triggerStart={ABOUT_REVEAL_START}>
         <div>
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch md:gap-5 lg:gap-6">
-            <div className="flex h-full flex-col rounded-2xl border border-yellow-400 bg-white p-6 shadow-sm sm:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-white p-6 shadow-sm sm:p-7">
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[0].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[0].body}</p>
               <Link
@@ -76,7 +76,7 @@ export function HomeAboutTeaser() {
 
             <AboutTeaserVideos />
 
-            <div className="flex h-full flex-col rounded-2xl border border-yellow-400 bg-white p-6 shadow-sm sm:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-white p-6 shadow-sm sm:p-7">
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[1].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[1].body}</p>
               <Link

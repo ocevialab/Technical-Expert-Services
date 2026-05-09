@@ -26,7 +26,7 @@ const navLinks = [
 
 function LogoMark({ className }: { className?: string }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden className={`shrink-0 ${className ?? "text-brand-navy"}`}>
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden className={`shrink-0 ${className ?? "text-brand-asset"}`}>
       <circle cx="16" cy="16" r="3" fill="currentColor" />
       {Array.from({ length: 12 }).map((_, i) => (
         <rect
@@ -138,7 +138,7 @@ export default function Navbar() {
           className="flex min-w-0 max-w-[min(100%,14rem)] shrink items-center gap-2 sm:max-w-[18rem] md:max-w-none"
           onClick={() => setMenuOpen(false)}
         >
-          <LogoMark className={`transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "text-white" : "text-brand-navy"}`} />
+          <LogoMark className={`transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "text-white" : "text-brand-asset"}`} />
           <span
             className={`text-left text-sm font-normal leading-snug tracking-tight transition-colors duration-700 ease-out motion-reduce:transition-none sm:text-base md:text-lg ${heroNav ? "text-white" : "text-brand-navy"}`}
           >
@@ -156,7 +156,7 @@ export default function Navbar() {
                 className={`flex items-center gap-2 text-sm font-medium transition-[opacity,color] duration-700 ease-out motion-reduce:transition-none hover:opacity-70 ${heroNav ? "text-white" : "text-brand-navy"}`}
               >
                 <span
-                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-700 ease-out motion-reduce:transition-none ${active ? (heroNav ? "bg-white" : "bg-brand-navy") : "bg-transparent"}`}
+                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-700 ease-out motion-reduce:transition-none ${active ? (heroNav ? "bg-white" : "bg-brand-asset") : "bg-transparent"}`}
                   aria-hidden
                 />
                 {label}
@@ -168,7 +168,7 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full bg-yellow-400 px-5 py-2.5 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-yellow-500 md:inline-flex"
+            className="hidden rounded-full bg-brand-asset px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-600 md:inline-flex"
           >
             Get Free Quote
           </Link>
@@ -180,9 +180,9 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-navy"}`} />
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-navy"}`} />
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-navy"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
           </button>
         </div>
         </div>
@@ -199,7 +199,7 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-navy hover:bg-neutral-50"
                 >
-                  {active && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-navy" />}
+                  {active && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-asset" />}
                   {!active && <span className="w-1.5 shrink-0" />}
                   {label}
                 </Link>
@@ -208,7 +208,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-full bg-yellow-400 py-3 text-center text-sm font-semibold text-brand-navy"
+              className="mt-2 rounded-full bg-brand-asset py-3 text-center text-sm font-semibold text-white"
             >
               Get Free Quote
             </Link>

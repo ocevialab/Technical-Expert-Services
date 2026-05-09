@@ -11,7 +11,7 @@ type SectionTagProps = {
 export function SectionTag({ children, className = "" }: SectionTagProps) {
   return (
     <p
-      className={`inline-flex w-fit items-center rounded-full border border-primary-100 bg-white px-6 py-2 text-xs font-bold uppercase tracking-widest text-brand-navy ${className}`}
+      className={`inline-flex w-fit items-center rounded-full border border-primary-100 bg-white px-6 py-2 text-xs font-bold uppercase tracking-widest text-brand-asset ${className}`}
     >
       {children}
     </p>

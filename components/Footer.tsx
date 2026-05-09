@@ -66,7 +66,7 @@ function SocialIcon({
   children: React.ReactNode;
 }) {
   const base =
-    "flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400";
+    "flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400";
   if (href) {
     return (
       <a
@@ -74,7 +74,7 @@ function SocialIcon({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        className={`${base} border-yellow-400 text-yellow-400 hover:bg-white/10 hover:text-yellow-300`}
+        className={`${base} border-accent-400 text-accent-400 hover:bg-white/10 hover:text-accent-300`}
       >
         {children}
       </a>

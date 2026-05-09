@@ -58,7 +58,7 @@ export function AboutTeaserVideos() {
           <p className="text-xs font-medium text-white drop-shadow-md sm:text-sm">Meet the company on site</p>
           <Link
             href="/about"
-            className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-yellow-300 drop-shadow-md underline-offset-2 hover:text-yellow-200 hover:underline sm:text-sm"
+            className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-accent-200 drop-shadow-md underline-offset-2 hover:text-white hover:underline sm:text-sm"
           >
             About us
             <FaArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />

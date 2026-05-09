@@ -82,7 +82,7 @@ function SliderNav({ onPrev, onNext }: { onPrev: () => void; onNext: () => void 
       <button
         type="button"
         onClick={onPrev}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-navy shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-asset shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
         aria-label="Scroll services left"
       >
         <FaArrowRight className="h-4 w-4 rotate-180" aria-hidden />
@@ -90,7 +90,7 @@ function SliderNav({ onPrev, onNext }: { onPrev: () => void; onNext: () => void 
       <button
         type="button"
         onClick={onNext}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-navy shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-asset shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
         aria-label="Scroll services right"
       >
         <FaArrowRight className="h-4 w-4" aria-hidden />
@@ -103,7 +103,7 @@ function ArrowLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="absolute bottom-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-brand-navy bg-white text-brand-navy transition hover:bg-yellow-400"
+      className="absolute bottom-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-brand-asset bg-white text-brand-asset transition hover:bg-accent-100"
       aria-label={label}
     >
       <FaArrowRight className="h-4 w-4" aria-hidden />
@@ -146,16 +146,16 @@ export function HomeServicesTeaser() {
             ref={scrollerRef}
             className="flex min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:gap-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            <article className="hidden w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border-2 border-primary-400/80 bg-brand-navy shadow-sm sm:flex sm:w-[360px]">
+            <article className="hidden w-[min(340px,100%)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border-2 border-brand-asset/35 bg-brand-asset shadow-sm sm:flex sm:w-[360px]">
               <div className="flex flex-1 flex-col p-7 pb-6">
-                <p className="text-sm font-normal uppercase tracking-wide text-yellow-300">Call now</p>
+                <p className="text-sm font-normal uppercase tracking-wide text-accent-200">Call now</p>
                 <p className="mt-3 text-base font-semibold leading-snug text-white/90 sm:text-lg">
                   Speak with our coordinator for a free quote or emergency line.
                 </p>
                 <div className="mt-auto pt-8">
                   <a
                     href={site.phoneTel}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-yellow-400 px-5 py-3.5 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-yellow-500"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-sm font-semibold text-brand-asset shadow-sm transition hover:bg-accent-100"
                   >
                     <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
                     {site.phoneDisplay}
@@ -164,7 +164,7 @@ export function HomeServicesTeaser() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 block text-center text-sm font-semibold text-yellow-300 underline-offset-4 hover:text-yellow-200 hover:underline"
+                    className="mt-3 block text-center text-sm font-semibold text-accent-200 underline-offset-4 hover:text-white hover:underline"
                   >
                     <span className="inline-flex items-center gap-1.5">
                       Or message on WhatsApp
@@ -201,7 +201,7 @@ export function HomeServicesTeaser() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
             <Link
               href="/services"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-brand-navy bg-transparent px-8 py-3 text-sm font-semibold text-brand-navy transition hover:bg-brand-navy hover:text-white"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-brand-asset bg-transparent px-8 py-3 text-sm font-semibold text-brand-asset transition hover:bg-brand-asset hover:text-white"
             >
               View all services
             </Link>

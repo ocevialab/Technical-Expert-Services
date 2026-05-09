@@ -22,6 +22,20 @@ body {
   /* Primary ink for body + UI on light surfaces (nav dark mode, headings, links tone) */
   --color-brand-navy: #051f32;
   --color-foreground: #051f32;
+  /* Logo mark, icon controls, accent panels, outline CTAs (= accent-500) */
+  --color-brand-asset: #1a6fbd;
+
+  /* Accent scale — tints/shades of brand asset blue (#1A6FBD); replaces former yellow CTAs */
+  --color-accent-50: #ecf4fc;
+  --color-accent-100: #d4e7f8;
+  --color-accent-200: #a8ccf0;
+  --color-accent-300: #7ab3e8;
+  --color-accent-400: #4c99e0;
+  --color-accent-500: #1a6fbd;
+  --color-accent-600: #175fa5;
+  --color-accent-700: #134f8d;
+  --color-accent-800: #0f3f75;
+  --color-accent-900: #0c335f;
 
   /* Primary (blue) scale */
   --color-primary-50: #e7f5ff;
@@ -34,18 +48,6 @@ body {
   --color-primary-700: #1c7ed6;
   --color-primary-800: #1971c2;
   --color-primary-900: #1864ab;
-
-  /* Yellow / amber accent scale */
-  --color-yellow-50: #fff9db;
-  --color-yellow-100: #fff3bf;
-  --color-yellow-200: #ffec99;
-  --color-yellow-300: #ffe066;
-  --color-yellow-400: #ffd43b;
-  --color-yellow-500: #fcc419;
-  --color-yellow-600: #fab005;
-  --color-yellow-700: #f59f00;
-  --color-yellow-800: #f08c00;
-  --color-yellow-900: #e67700;
 
   --font-sans: "Clash Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;

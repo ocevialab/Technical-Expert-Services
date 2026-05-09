@@ -17,7 +17,7 @@ export default function GalleryPage() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
             href="/contact"
-            className="rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-brand-navy hover:bg-yellow-500"
+            className="rounded-full bg-brand-asset px-6 py-3 text-sm font-semibold text-white hover:bg-accent-600"
           >
             Get free quote
           </Link>

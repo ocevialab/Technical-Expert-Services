@@ -104,7 +104,7 @@ function SliderNav({
       <button
         type="button"
         onClick={onPrev}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-navy shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-asset shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
         aria-label="Scroll projects left"
       >
         <FaArrowRight className="h-4 w-4 rotate-180" aria-hidden />
@@ -112,7 +112,7 @@ function SliderNav({
       <button
         type="button"
         onClick={onNext}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-navy shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-primary-200 bg-white text-brand-asset shadow-sm transition hover:border-primary-300 hover:bg-primary-50"
         aria-label="Scroll projects right"
       >
         <FaArrowRight className="h-4 w-4" aria-hidden />
@@ -151,8 +151,8 @@ function ComparePane({
       <span
         className={`pointer-events-none absolute top-3 rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${
           side === "before"
-            ? "left-3 bg-brand-navy/80 text-white"
-            : "right-3 bg-yellow-400/95 text-brand-navy"
+            ? "left-3 bg-brand-asset/88 text-white"
+            : "right-3 bg-accent-200/95 text-brand-navy"
         }`}
       >
         {label}
@@ -207,7 +207,7 @@ function ProjectCompareCard({ project }: { project: ProjectCard }) {
           <ReactCompareSliderHandle
             buttonStyle={{
               backgroundColor: "#ffffff",
-              border: "3px solid #ffd43b",
+              border: "3px solid #4c99e0",
               boxShadow: "0 4px 14px rgba(5, 31, 50, 0.18)",
               width: "2.75rem",
               height: "2.75rem",
@@ -285,7 +285,7 @@ export function HomeProjectsTeaser() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:mt-12 sm:gap-8">
             <Link
               href="/gallery"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-brand-navy bg-transparent px-8 py-3 text-sm font-semibold text-brand-navy transition hover:bg-brand-navy hover:text-white"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-brand-asset bg-transparent px-8 py-3 text-sm font-semibold text-brand-asset transition hover:bg-brand-asset hover:text-white"
             >
               View gallery
             </Link>

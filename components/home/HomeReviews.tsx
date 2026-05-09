@@ -27,7 +27,7 @@ function StarRow({ rating }: { rating: number }) {
       {Array.from({ length: 5 }, (_, i) => (
         <FaStar
           key={i}
-          className={`h-3.5 w-3.5 ${i < rating ? "text-yellow-400" : "text-primary-200"}`}
+          className={`h-3.5 w-3.5 ${i < rating ? "text-accent-500" : "text-primary-200"}`}
           aria-hidden
         />
       ))}
@@ -208,7 +208,7 @@ export function HomeReviews() {
                   <div className="mt-1 flex items-center gap-2">
                     <div className="flex gap-0.5" aria-hidden>
                       {Array.from({ length: 5 }, (_, i) => (
-                        <FaStar key={i} className="h-4 w-4 text-yellow-400" />
+                        <FaStar key={i} className="h-4 w-4 text-accent-500" />
                       ))}
                     </div>
                     <span className="text-lg font-semibold text-brand-navy">4.9</span>
