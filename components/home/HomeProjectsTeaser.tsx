@@ -178,7 +178,7 @@ function ProjectCompareCard({ project }: { project: ProjectCard }) {
     : `object-cover ${project.afterPosition}`;
 
   return (
-    <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl ring-1 ring-primary-100 sm:rounded-3xl sm:ring-primary-100/80">
+    <div className="relative aspect-3/2 w-full shrink-0 overflow-hidden">
       <ReactCompareSlider
         className="h-full w-full"
         style={sliderStyle}
@@ -231,7 +231,7 @@ export function HomeProjectsTeaser() {
   const scrollBy = useCallback((direction: 1 | -1) => {
     const el = scrollerRef.current;
     if (!el) return;
-    const step = Math.min(el.clientWidth * 0.78, 340);
+    const step = Math.min(el.clientWidth * 0.78, 328);
     el.scrollBy({ left: direction * step, behavior: "smooth" });
   }, []);
 
@@ -267,16 +267,19 @@ export function HomeProjectsTeaser() {
             {projects.map((project) => (
               <article
                 key={project.title}
-                className="flex w-[min(320px,calc(100vw-2.5rem))] shrink-0 snap-start flex-col sm:w-[min(360px,calc(100vw-4rem))]"
+                className="flex shrink-0 snap-start flex-col"
+                title={`${project.title}: ${project.desc}`}
               >
-                <ProjectCompareCard project={project} />
-                <div className="mt-4 px-0.5 text-left sm:mt-5">
-                  <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-neutral-600 sm:text-base">
-                    {project.desc}
-                  </p>
+                <div className="flex h-[398px] w-[min(280px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-[0_22px_50px_-18px_rgba(5,31,50,0.16),0_10px_22px_-12px_rgba(5,31,50,0.08)] sm:h-[412px] sm:w-[320px] sm:rounded-3xl">
+                  <ProjectCompareCard project={project} />
+                  <div className="flex min-h-0 flex-1 flex-col border-t border-primary-100/90 px-4 pb-4 pt-3 text-left sm:px-5 sm:pb-5 sm:pt-4">
+                    <h3 className="line-clamp-2 text-lg font-normal leading-snug text-brand-navy sm:text-xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-4 min-h-0 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">
+                      {project.desc}
+                    </p>
+                  </div>
                 </div>
               </article>
             ))}
