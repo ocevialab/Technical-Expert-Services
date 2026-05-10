@@ -74,7 +74,7 @@ export function HomeAboutTeaser() {
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch md:gap-5 lg:gap-6">
             <div
               data-reveal
-              className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
+              className="flex h-full flex-col rounded-2xl border border-primary-100 bg-white p-6 shadow-card sm:p-7"
             >
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">
                 {companyCards[0].title}
@@ -96,7 +96,7 @@ export function HomeAboutTeaser() {
 
             <div
               data-reveal
-              className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
+              className="flex h-full flex-col rounded-2xl border border-primary-100 bg-white p-6 shadow-card sm:p-7"
             >
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">
                 {companyCards[1].title}
