@@ -135,10 +135,10 @@ body {
   }
 
   /**
-   * About hero: OKLCH interpolation reduces visible banding vs many sRGB stops; subtle
-   * grain (::after) breaks residual 8-bit steps on some displays.
+   * Inner marketing heroes (About, Services): OKLCH + grain — see .about-hero-unified.
    */
-  .about-hero-unified {
+  .about-hero-unified,
+  .services-page-hero {
     position: relative;
     isolation: isolate;
     background: linear-gradient(
@@ -146,18 +146,20 @@ body {
       var(--color-primary-900) 0%,
       var(--color-primary-800) 10%,
       var(--color-primary-700) 22%,
-      var(--color-primary-600) 32%,
-      var(--color-primary-500) 41%,
-      var(--color-primary-400) 49%,
-      var(--color-primary-300) 56%,
-      var(--color-primary-100) 66%,
-      var(--color-accent-50) 74%,
-      var(--color-home-blue-soft) 84%,
+      var(--color-primary-600) 34%,
+      var(--color-primary-500) 46%,
+      var(--color-primary-400) 56%,
+      var(--color-primary-300) 66%,
+      var(--color-primary-300) 72%,
+      var(--color-primary-100) 80%,
+      var(--color-accent-50) 87%,
+      var(--color-home-blue-soft) 94%,
       var(--color-home-blue-soft) 100%
     );
   }
 
-  .about-hero-unified::after {
+  .about-hero-unified::after,
+  .services-page-hero::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -169,14 +171,52 @@ body {
   }
 
   @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
-    .about-hero-unified {
+    .about-hero-unified,
+    .services-page-hero {
       background: linear-gradient(
         to bottom in oklch,
         var(--color-primary-900) 0%,
-        var(--color-primary-700) 30%,
-        var(--color-primary-500) 48%,
-        var(--color-primary-300) 62%,
-        var(--color-primary-100) 76%,
+        var(--color-primary-700) 38%,
+        var(--color-primary-500) 54%,
+        var(--color-primary-300) 70%,
+        var(--color-primary-300) 76%,
+        var(--color-primary-100) 84%,
+        var(--color-home-blue-soft) 94%,
+        var(--color-home-blue-soft) 100%
+      );
+    }
+  }
+
+  /**
+   * Services hero has more lines than About — hold mid blues much lower so paragraph is
+   * never on near-white (overrides shared stops above, including OKLCH).
+   */
+  .services-page-hero {
+    background: linear-gradient(
+      to bottom,
+      var(--color-primary-900) 0%,
+      var(--color-primary-800) 11%,
+      var(--color-primary-700) 22%,
+      var(--color-primary-600) 34%,
+      var(--color-primary-600) 86%,
+      var(--color-primary-500) 91%,
+      var(--color-primary-400) 94%,
+      var(--color-home-blue-soft) 98%,
+      var(--color-home-blue-soft) 100%
+    );
+  }
+
+  @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
+    .services-page-hero {
+      background: linear-gradient(
+        to bottom in oklch,
+        var(--color-primary-900) 0%,
+        var(--color-primary-700) 28%,
+        var(--color-primary-600) 52%,
+        var(--color-primary-600) 84%,
+        var(--color-primary-500) 90%,
+        var(--color-primary-400) 93%,
+        var(--color-home-blue-soft) 98%,
         var(--color-home-blue-soft) 100%
       );
     }

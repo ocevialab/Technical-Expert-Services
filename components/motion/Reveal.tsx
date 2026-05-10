@@ -50,11 +50,12 @@ export function Reveal({ children, className = "", delayMs = 0, triggerStart }: 
       });
     }, el);
 
-    /** Avoid invisible above-the-fold blocks: ST start line can sit below a peeking section’s top. */
+    /** If the trigger line is already passed (e.g. user scrolled before ST measured), show content. */
     const snapIfAlreadyVisible = () => {
       ScrollTrigger.refresh();
       const st = tween.scrollTrigger;
       if (!st) return;
+      st.update();
       if (st.progress > 0) {
         tween.progress(1);
         return;

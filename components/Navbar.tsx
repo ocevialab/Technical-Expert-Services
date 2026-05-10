@@ -11,9 +11,10 @@ const TOP_UNPIN = 36;
 const HOME_SOLID_ENTER = 168;
 /** Hysteresis: transparent hero again only after scrolling back up above this. */
 const HOME_SOLID_EXIT = 72;
-/** About page: solid light bar after scrolling past the blue hero band. */
-const ABOUT_SOLID_ENTER = 220;
-const ABOUT_SOLID_EXIT = 72;
+/** Blue-gradient hero on inner pages (nav matches About until scroll). */
+const INNER_BLUE_HERO_PATHS = new Set(["/about", "/services"]);
+const INNER_HERO_SOLID_ENTER = 220;
+const INNER_HERO_SOLID_EXIT = 72;
 /** Slide hide / show (transform only — feels smoother than mixing with bg). */
 const NAV_SLIDE_MS = 520;
 /** Background / chrome crossfade (slower so white does not “snap” off). */
@@ -52,13 +53,13 @@ export default function Navbar() {
   const [navHidden, setNavHidden] = useState(false);
   /** On home: once true, solid nav until user scrolls back up past HOME_SOLID_EXIT (hysteresis). */
   const [homePastHero, setHomePastHero] = useState(false);
-  /** On /about: same pattern over the unified blue hero. */
-  const [aboutPastHero, setAboutPastHero] = useState(false);
+  /** Transparent nav over unified blue hero on About & Services. */
+  const [innerBluePastHero, setInnerBluePastHero] = useState(false);
   const lastScrollY = useRef(0);
   const isHome = pathname === "/";
-  const isAbout = pathname === "/about";
+  const isInnerBlueHero = INNER_BLUE_HERO_PATHS.has(pathname);
   const glassHeroNav =
-    (isHome && !menuOpen && !homePastHero) || (isAbout && !menuOpen && !aboutPastHero);
+    (isHome && !menuOpen && !homePastHero) || (isInnerBlueHero && !menuOpen && !innerBluePastHero);
 
   useEffect(() => {
     const y = typeof window !== "undefined" ? window.scrollY : 0;
@@ -69,10 +70,10 @@ export default function Navbar() {
     } else {
       setHomePastHero(false);
     }
-    if (pathname === "/about") {
-      setAboutPastHero(y > ABOUT_SOLID_ENTER);
+    if (INNER_BLUE_HERO_PATHS.has(pathname)) {
+      setInnerBluePastHero(y > INNER_HERO_SOLID_ENTER);
     } else {
-      setAboutPastHero(false);
+      setInnerBluePastHero(false);
     }
   }, [pathname]);
 
@@ -89,11 +90,11 @@ export default function Navbar() {
         setHomePastHero(false);
       }
 
-      if (isAbout && !menuOpen) {
-        if (y > ABOUT_SOLID_ENTER) setAboutPastHero(true);
-        else if (y < ABOUT_SOLID_EXIT) setAboutPastHero(false);
-      } else if (!isAbout) {
-        setAboutPastHero(false);
+      if (isInnerBlueHero && !menuOpen) {
+        if (y > INNER_HERO_SOLID_ENTER) setInnerBluePastHero(true);
+        else if (y < INNER_HERO_SOLID_EXIT) setInnerBluePastHero(false);
+      } else if (!isInnerBlueHero) {
+        setInnerBluePastHero(false);
       }
 
       if (menuOpen || reduceMotion.matches) {
@@ -129,7 +130,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", onScroll);
       reduceMotion.removeEventListener("change", onReducePref);
     };
-  }, [menuOpen, isHome, isAbout]);
+  }, [menuOpen, isHome, isInnerBlueHero]);
 
   return (
     <header
