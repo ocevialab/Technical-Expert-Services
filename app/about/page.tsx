@@ -1,106 +1,252 @@
+import Image from "next/image";
 import Link from "next/link";
-import { FaHelmetSafety } from "react-icons/fa6";
+import { FaCheck, FaHelmetSafety, FaWhatsapp } from "react-icons/fa6";
 import { Reveal } from "@/components/motion/Reveal";
-import { site } from "@/lib/site";
+import { SectionTag } from "@/components/ui/SectionTag";
+import { site, whatsappHref } from "@/lib/site";
 
 /** ScrollTrigger: play when this much of the section is in view (from bottom). */
 const REVEAL_ON_ENTER = "top bottom-=28%";
+/** Team block: fire when section top meets viewport line 10% above bottom edge. */
+const REVEAL_TEAM_START = "top bottom-=10%";
+
+/** Match home page horizontal gutters (hero, marquee, HomeAboutTeaser). */
+const PAGE_GUTTER = "px-8 sm:px-10 lg:px-14 xl:px-16";
+/** Match HomeAboutTeaser / primary content strips — not carousel px-4 sections. */
+const BAND_PY = "py-14 sm:py-20";
+
+const PAINTING_IMG =
+  "/assets/handyman-painting-wall-with-roller-brush-dipped-white-paint-handyman-renovating-apartment-redecoration-home-construction-while-renovating-improving-repair-decorating.jpg";
+const SITE_IMG = "/assets/pexels-mario-vasquez-rioja-560959392-17014386.jpg";
 
 const team = [
-  { name: "Ahmed Al Mansoori", role: "Operations & Estimating", years: "UAE projects since 2012" },
-  { name: "Priya Nair", role: "Lead — Painting", years: "Interior & villa specialist" },
-  { name: "Rajesh Kumar", role: "Lead — Plumbing", years: "Emergency & fit-out expert" },
-  { name: "Sara Al Hashimi", role: "Customer Care", years: "Scheduling & follow-up" },
-];
+  { name: "Ahmed Al Mansoori", role: "Operations & estimating", years: "UAE programmes since 2012" },
+  { name: "Priya Nair", role: "Lead — painting", years: "Interior, villa & commercial finishes" },
+  { name: "Rajesh Kumar", role: "Lead — plumbing", years: "Emergency response & fit-out" },
+  { name: "Sara Al Hashimi", role: "Customer care", years: "Scheduling, updates & aftercare" },
+] as const;
 
 const stats = [
-  { value: "15+", label: "Years combined experience" },
-  { value: "5K+", label: "Jobs across the UAE" },
+  { value: "15+", label: "Years combined on-site experience" },
+  { value: "5K+", label: "Jobs delivered across the UAE" },
   { value: "24/7", label: "Emergency plumbing line" },
-  { value: "100%", label: "Transparent quotations" },
-];
+  { value: "100%", label: "Written scopes before we start" },
+] as const;
+
+const promises = [
+  "Written scopes and transparent pricing — no surprise line items after we have surveyed.",
+  "Supervisors and named leads you meet from day one, not anonymous rotating crews.",
+  "Site discipline as standard: protection, dust control, and tidy handovers.",
+  "Photo updates on WhatsApp from survey through sign-off so you always know the status.",
+] as const;
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Survey",
+    body: "We review the space, photos, or plans — on site or remotely — and agree what “done” looks like.",
+  },
+  {
+    step: "02",
+    title: "Scope & quote",
+    body: "You receive a clear written scope with materials grade and timeline before any deposit.",
+  },
+  {
+    step: "03",
+    title: "Schedule",
+    body: "We phase rooms or trades so you can keep living or working on site whenever possible.",
+  },
+  {
+    step: "04",
+    title: "Walkthrough",
+    body: "Final inspection together; snag list closed before we invoice the balance.",
+  },
+] as const;
 
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-linear-to-br from-primary-900 to-primary-700 px-6 py-20 text-center text-white sm:px-8 lg:px-12 xl:px-16">
+      <section
+        className={`about-hero-unified ${PAGE_GUTTER} pb-20 pt-14 text-center text-white sm:pb-24 sm:pt-16 lg:pb-28`}
+      >
         <Reveal triggerStart={REVEAL_ON_ENTER}>
-          <h1 className="mb-4 text-4xl font-normal md:text-5xl">About {site.brand}</h1>
-          <p className="mx-auto max-w-2xl text-lg text-primary-100">
-            {site.brandFull} — serving villas, apartments, and commercial clients across Dubai, Sharjah,
-            Ajman, and nearby communities.
-          </p>
+          <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_20px_rgba(5,31,50,0.45)]">
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/95 sm:text-sm">
+              About us
+            </p>
+            <h1 className="mt-3 text-3xl font-normal leading-tight sm:mt-4 sm:text-4xl md:text-5xl lg:text-[3.15rem]">
+              People behind the paint &amp; pipes
+            </h1>
+            <p className="mx-auto mt-3 max-w-2xl text-pretty text-base leading-relaxed text-white sm:mt-4 sm:text-lg">
+              {site.brandFull}. Villas, apartments, offices, and retail across {site.areas}.
+            </p>
+          </div>
         </Reveal>
       </section>
 
-      <section className="bg-white px-6 py-16 sm:px-8 lg:px-12 xl:px-16">
+      <section className={`home-band-a ${PAGE_GUTTER} pb-14 pt-6 sm:pb-20 sm:pt-8`}>
         <Reveal triggerStart={REVEAL_ON_ENTER}>
-          <div className="mx-auto grid max-w-4xl items-center gap-12 md:grid-cols-2">
-          <div>
-            <h2 className="mb-4 text-3xl font-normal text-brand-navy">Our story</h2>
-            <p className="mb-4 leading-relaxed text-gray-600">
-              {site.brand} is your UAE partner for finishing and maintenance: skilled painters for crisp
-              interiors and exteriors, and licensed plumbers for everyday fixes and emergencies.
-            </p>
-            <p className="mb-4 leading-relaxed text-gray-600">
-              We work with clear scopes, quality materials, and crews who respect your home — shoe
-              covers, dust control, and tidy handovers are standard, not optional extras.
-            </p>
-            <p className="leading-relaxed text-gray-600">
-              From a single bathroom leak to a full villa repaint before handover, we scale with your
-              timeline and keep you updated on WhatsApp from survey to sign-off.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-6 rounded-2xl bg-primary-50 p-8">
-            {stats.map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <div className="text-3xl font-normal text-primary-700">{value}</div>
-                <div className="mt-1 text-sm text-gray-600">{label}</div>
+          <div className="w-full">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+              <div className="order-2 flex flex-col lg:order-1 lg:max-w-xl xl:max-w-2xl">
+                <SectionTag className="mb-4">Our story</SectionTag>
+                <h2 className="text-3xl font-normal leading-tight text-brand-navy md:text-4xl">
+                  Built on referrals, held to a higher site standard
+                </h2>
+                <p className="mt-5 leading-relaxed text-neutral-600">{site.aboutTeaserIntro}</p>
+                <p className="mt-4 leading-relaxed text-neutral-600">{site.aboutTeaserShort}</p>
+                <ul className="mt-8 space-y-3">
+                  {promises.map((line) => (
+                    <li key={line} className="flex gap-3 text-sm leading-relaxed text-brand-navy">
+                      <FaCheck
+                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-asset"
+                        aria-hidden
+                      />
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="bg-primary-50/70 px-6 py-16 sm:px-8 lg:px-12 xl:px-16">
-        <Reveal triggerStart={REVEAL_ON_ENTER}>
-          <div className="mx-auto max-w-5xl">
-          <h2 className="mb-2 text-center text-3xl font-normal text-brand-navy">Meet the team</h2>
-          <p className="mb-12 text-center text-gray-500">
-            Supervisors and leads on site every day — not anonymous subcontractors.
-          </p>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map(({ name, role, years }) => (
-              <div
-                key={name}
-                className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-card transition-shadow hover:shadow-card-hover"
-              >
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                  <FaHelmetSafety className="h-8 w-8" aria-hidden />
+              <div className="order-1 lg:order-2">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-primary-100/90 shadow-card">
+                  <Image
+                    src={PAINTING_IMG}
+                    alt="Painter applying finish coat on a residential wall"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-linear-to-tr from-brand-navy/25 via-transparent to-transparent"
+                    aria-hidden
+                  />
                 </div>
-                <h3 className="font-normal text-brand-navy">{name}</h3>
-                <p className="mt-1 text-sm text-primary-700">{role}</p>
-                <p className="mt-1 text-xs text-gray-500">{years}</p>
               </div>
-            ))}
-          </div>
+            </div>
+
+            <div className="mt-14 grid w-full grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5 lg:gap-6">
+              {stats.map(({ value, label }) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-primary-100/80 bg-white/70 px-4 py-5 text-center shadow-card backdrop-blur-sm sm:px-5 sm:py-6"
+                >
+                  <div className="text-2xl font-normal text-brand-asset sm:text-3xl">{value}</div>
+                  <div className="mt-2 text-xs leading-snug text-neutral-600 sm:text-sm">{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>
 
-      <section className="bg-primary-800 px-6 py-14 text-center text-white sm:px-8 lg:px-12 xl:px-16">
+      <section className={`home-band-b ${PAGE_GUTTER} ${BAND_PY}`}>
         <Reveal triggerStart={REVEAL_ON_ENTER}>
-          <h2 className="mb-4 text-2xl font-normal">Ready for a walkthrough or quote?</h2>
-          <p className="mx-auto mb-6 max-w-lg text-sm text-primary-100">
+          <div className="w-full">
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12 xl:gap-16">
+              <div className="lg:max-w-xl">
+                <h2 className="text-3xl font-normal leading-tight text-brand-navy md:text-4xl">
+                  From first message to handover
+                </h2>
+                <p className="mt-5 max-w-xl leading-relaxed text-neutral-600">
+                  Whether it is a single leak or a multi-room repaint, the sequence stays predictable — so you can plan
+                  around us with confidence.
+                </p>
+                <div className="mt-10 space-y-6">
+                  {processSteps.map(({ step, title, body }) => (
+                    <div
+                      key={step}
+                      className="flex gap-4 rounded-xl border border-primary-100/70 bg-white/80 px-5 py-4 shadow-sm backdrop-blur-sm"
+                    >
+                      <span
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xs font-semibold text-white"
+                        aria-hidden
+                      >
+                        {step}
+                      </span>
+                      <div>
+                        <h3 className="font-normal text-brand-navy">{title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-neutral-600">{body}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="relative grid min-h-0 lg:h-full lg:grid-rows-[minmax(0,1fr)_auto]">
+                <div className="relative aspect-[4/3] min-h-[14rem] overflow-hidden rounded-2xl border border-primary-100/90 shadow-card lg:aspect-auto lg:min-h-0">
+                  <Image
+                    src={SITE_IMG}
+                    alt="Trade professional on site reviewing work"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-navy/35 via-transparent to-transparent"
+                    aria-hidden
+                  />
+                </div>
+                <p className="mt-4 text-center text-xs text-neutral-500 lg:text-left">
+                  Real crews, real sites — coordination and communication stay with us from quote to completion.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className={`home-band-a ${PAGE_GUTTER} ${BAND_PY}`}>
+        <Reveal triggerStart={REVEAL_TEAM_START}>
+          <div className="w-full">
+            <div className="mx-auto mb-12 max-w-2xl text-center">
+              <SectionTag className="mx-auto mb-4">Team</SectionTag>
+              <h2 className="text-3xl font-normal text-brand-navy md:text-4xl">Who you work with</h2>
+              <p className="mt-4 text-neutral-600">
+                Supervisors and discipline leads on site — aligned with one coordinator so nothing falls between trades.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {team.map(({ name, role, years }) => (
+                <div
+                  key={name}
+                  className="rounded-2xl border border-primary-100 bg-white/90 p-6 text-center shadow-card transition-shadow hover:shadow-card-hover"
+                >
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-primary-100 to-accent-50 text-brand-asset">
+                    <FaHelmetSafety className="h-8 w-8" aria-hidden />
+                  </div>
+                  <h3 className="font-normal text-brand-navy">{name}</h3>
+                  <p className="mt-1 text-sm font-medium text-brand-asset">{role}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-neutral-500">{years}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className={`bg-brand-navy ${PAGE_GUTTER} ${BAND_PY} text-center text-white`}>
+        <Reveal triggerStart={REVEAL_ON_ENTER}>
+          <h2 className="text-3xl font-normal md:text-4xl">Ready for a walkthrough or quote?</h2>
+          <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-primary-100 sm:text-base">
             Send photos on WhatsApp or book a site visit — we respond quickly across {site.areas}.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block rounded-xl bg-white px-8 py-3 font-normal text-brand-navy transition-colors hover:bg-primary-100"
-          >
-            Contact {site.brand}
-          </Link>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-primary-100"
+            >
+              Contact {site.brand}
+            </Link>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-2 border-white/80 bg-transparent px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              <FaWhatsapp className="h-5 w-5" aria-hidden />
+              WhatsApp us
+            </a>
+          </div>
         </Reveal>
       </section>
     </>

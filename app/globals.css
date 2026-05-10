@@ -99,7 +99,8 @@ body {
     );
   }
 
-  /* Home → footer: long, even fade into brand navy (avoids visible “bands”). */
+  /* Home → footer: long fade from light page bands into brand navy. Do not place after a
+     navy section (e.g. About CTA): top stop is light blue and will flash between navy blocks. */
   .home-footer-bridge {
     height: clamp(7.5rem, 18vw, 14rem);
     background: linear-gradient(
@@ -118,6 +119,41 @@ body {
       #182838 86%,
       #11212f 93%,
       var(--color-brand-navy) 100%
+    );
+  }
+
+  /* Inner pages: short strip so first content band stays in initial viewport */
+  .page-hero-fade-to-light {
+    height: clamp(1.5rem, 3.5vw, 2.25rem);
+    background: linear-gradient(
+      to bottom,
+      var(--color-primary-700) 0%,
+      var(--color-primary-400) 42%,
+      var(--color-primary-100) 72%,
+      var(--color-home-blue-soft) 100%
+    );
+  }
+
+  /**
+   * About hero: deep blues hold longer behind the headline block; fade accelerates
+   * in the lower padding so white copy never sits on near-white.
+   */
+  .about-hero-unified {
+    background: linear-gradient(
+      to bottom,
+      var(--color-primary-900) 0%,
+      var(--color-primary-800) 12%,
+      var(--color-primary-700) 26%,
+      var(--color-primary-700) 58%,
+      var(--color-primary-600) 64%,
+      var(--color-primary-500) 69%,
+      var(--color-primary-400) 74%,
+      var(--color-primary-300) 79%,
+      var(--color-primary-200) 84%,
+      var(--color-primary-100) 88%,
+      var(--color-accent-100) 92%,
+      var(--color-home-blue-soft) 97%,
+      var(--color-home-blue-soft) 100%
     );
   }
 }

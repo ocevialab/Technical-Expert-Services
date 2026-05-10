@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, type ReactNode } from "react";
-import { gsap } from "./gsap-client";
+import { gsap, ScrollTrigger } from "./gsap-client";
 
 type RevealProps = {
   children: ReactNode;
@@ -28,8 +28,11 @@ export function Reveal({ children, className = "", delayMs = 0, triggerStart }: 
     }
 
     gsap.set(el, { opacity: 0, y: 72, scale: 0.97 });
+
+    let tween: gsap.core.Tween;
+
     const ctx = gsap.context(() => {
-      gsap.to(el, {
+      tween = gsap.to(el, {
         opacity: 1,
         y: 0,
         scale: 1,
@@ -46,6 +49,28 @@ export function Reveal({ children, className = "", delayMs = 0, triggerStart }: 
         },
       });
     }, el);
+
+    /** Avoid invisible above-the-fold blocks: ST start line can sit below a peeking section’s top. */
+    const snapIfAlreadyVisible = () => {
+      ScrollTrigger.refresh();
+      const st = tween.scrollTrigger;
+      if (!st) return;
+      if (st.progress > 0) {
+        tween.progress(1);
+        return;
+      }
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const navReserve = 72;
+      const intersectsViewport = r.top < vh - navReserve && r.bottom > navReserve;
+      if (intersectsViewport) {
+        tween.progress(1);
+      }
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(snapIfAlreadyVisible);
+    });
 
     return () => ctx.revert();
   }, [delayMs, triggerStart]);
