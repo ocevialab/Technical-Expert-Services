@@ -63,19 +63,23 @@ export default function HomePage() {
       </section>
 
       <div
-        className="home-marquee-strip w-full overflow-hidden px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16"
+        className="home-marquee-strip w-full overflow-hidden px-8 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14 xl:px-16"
         role="region"
         aria-label="Services highlight"
       >
-        <div className="flex w-max animate-marquee motion-reduce:animate-none">
+        <div className="relative z-10 flex w-max animate-marquee motion-reduce:animate-none">
           {[0, 1].map((copy) => (
             <div
               key={copy}
-              className="flex shrink-0 items-center gap-3 px-6 text-sm font-normal uppercase tracking-wide text-brand-navy sm:text-base"
+              className="flex shrink-0 items-center gap-3 px-6 text-sm font-medium uppercase tracking-[0.12em] text-white/95 drop-shadow-[0_1px_12px_rgba(5,31,50,0.35)] sm:text-base sm:tracking-[0.14em]"
             >
               {tickerItems.map((item, i) => (
                 <span key={`${copy}-${item}`} className="flex items-center gap-3">
-                  {i > 0 && <span className="text-brand-navy">•</span>}
+                  {i > 0 && (
+                    <span className="text-white/45 drop-shadow-none" aria-hidden>
+                      •
+                    </span>
+                  )}
                   <span>{item}</span>
                 </span>
               ))}
