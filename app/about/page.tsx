@@ -67,7 +67,7 @@ export default function AboutPage() {
   return (
     <>
       <section
-        className={`about-hero-unified ${PAGE_GUTTER} pb-20 pt-14 text-center text-white sm:pb-24 sm:pt-16 lg:pb-28`}
+        className={`about-hero-unified relative z-0 ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
       >
         <Reveal triggerStart={REVEAL_ON_ENTER}>
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_20px_rgba(5,31,50,0.45)]">

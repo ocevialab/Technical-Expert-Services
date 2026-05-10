@@ -11,6 +11,9 @@ const TOP_UNPIN = 36;
 const HOME_SOLID_ENTER = 168;
 /** Hysteresis: transparent hero again only after scrolling back up above this. */
 const HOME_SOLID_EXIT = 72;
+/** About page: solid light bar after scrolling past the blue hero band. */
+const ABOUT_SOLID_ENTER = 220;
+const ABOUT_SOLID_EXIT = 72;
 /** Slide hide / show (transform only — feels smoother than mixing with bg). */
 const NAV_SLIDE_MS = 520;
 /** Background / chrome crossfade (slower so white does not “snap” off). */
@@ -49,9 +52,13 @@ export default function Navbar() {
   const [navHidden, setNavHidden] = useState(false);
   /** On home: once true, solid nav until user scrolls back up past HOME_SOLID_EXIT (hysteresis). */
   const [homePastHero, setHomePastHero] = useState(false);
+  /** On /about: same pattern over the unified blue hero. */
+  const [aboutPastHero, setAboutPastHero] = useState(false);
   const lastScrollY = useRef(0);
   const isHome = pathname === "/";
-  const heroNav = isHome && !menuOpen && !homePastHero;
+  const isAbout = pathname === "/about";
+  const glassHeroNav =
+    (isHome && !menuOpen && !homePastHero) || (isAbout && !menuOpen && !aboutPastHero);
 
   useEffect(() => {
     const y = typeof window !== "undefined" ? window.scrollY : 0;
@@ -61,6 +68,11 @@ export default function Navbar() {
       setHomePastHero(y > HOME_SOLID_ENTER);
     } else {
       setHomePastHero(false);
+    }
+    if (pathname === "/about") {
+      setAboutPastHero(y > ABOUT_SOLID_ENTER);
+    } else {
+      setAboutPastHero(false);
     }
   }, [pathname]);
 
@@ -75,6 +87,13 @@ export default function Navbar() {
         else if (y < HOME_SOLID_EXIT) setHomePastHero(false);
       } else if (!isHome) {
         setHomePastHero(false);
+      }
+
+      if (isAbout && !menuOpen) {
+        if (y > ABOUT_SOLID_ENTER) setAboutPastHero(true);
+        else if (y < ABOUT_SOLID_EXIT) setAboutPastHero(false);
+      } else if (!isAbout) {
+        setAboutPastHero(false);
       }
 
       if (menuOpen || reduceMotion.matches) {
@@ -110,7 +129,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", onScroll);
       reduceMotion.removeEventListener("change", onReducePref);
     };
-  }, [menuOpen, isHome]);
+  }, [menuOpen, isHome, isAbout]);
 
   return (
     <header
@@ -123,9 +142,9 @@ export default function Navbar() {
     >
       <div
         className={`${
-          heroNav
+          glassHeroNav
             ? "border-b border-transparent bg-transparent shadow-none"
-            : "border-b border-black/5 bg-white/95 shadow-sm backdrop-blur-md"
+            : "border-b border-primary-200/70 bg-background/88 shadow-[0_8px_30px_-12px_rgba(5,31,50,0.08)] backdrop-blur-md"
         } motion-reduce:transition-none`}
         style={{
           transition: `background-color ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1), border-color ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1)`,
@@ -137,9 +156,9 @@ export default function Navbar() {
           className="flex min-w-0 max-w-[min(100%,14rem)] shrink items-center gap-2 sm:max-w-[18rem] md:max-w-none"
           onClick={() => setMenuOpen(false)}
         >
-          <LogoMark className={`transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "text-white" : "text-brand-asset"}`} />
+          <LogoMark className={`transition-colors duration-700 ease-out motion-reduce:transition-none ${glassHeroNav ? "text-white" : "text-brand-asset"}`} />
           <span
-            className={`text-left text-sm font-normal leading-snug tracking-tight transition-colors duration-700 ease-out motion-reduce:transition-none sm:text-base md:text-lg ${heroNav ? "text-white" : "text-brand-navy"}`}
+            className={`text-left text-sm font-normal leading-snug tracking-tight transition-colors duration-700 ease-out motion-reduce:transition-none sm:text-base md:text-lg ${glassHeroNav ? "text-white" : "text-brand-navy"}`}
           >
             {site.brand}
           </span>
@@ -152,10 +171,10 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-2 text-sm font-medium transition-[opacity,color] duration-700 ease-out motion-reduce:transition-none hover:opacity-70 ${heroNav ? "text-white" : "text-brand-navy"}`}
+                className={`flex items-center gap-2 text-sm font-medium transition-[opacity,color] duration-700 ease-out motion-reduce:transition-none hover:opacity-70 ${glassHeroNav ? "text-white" : "text-brand-navy"}`}
               >
                 <span
-                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-700 ease-out motion-reduce:transition-none ${active ? (heroNav ? "bg-white" : "bg-brand-asset") : "bg-transparent"}`}
+                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-700 ease-out motion-reduce:transition-none ${active ? (glassHeroNav ? "bg-white" : "bg-brand-asset") : "bg-transparent"}`}
                   aria-hidden
                 />
                 {label}
@@ -179,15 +198,15 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
-            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${heroNav ? "bg-white" : "bg-brand-asset"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${glassHeroNav ? "bg-white" : "bg-brand-asset"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${glassHeroNav ? "bg-white" : "bg-brand-asset"}`} />
+            <span className={`block h-0.5 w-6 transition-colors duration-700 ease-out motion-reduce:transition-none ${glassHeroNav ? "bg-white" : "bg-brand-asset"}`} />
           </button>
         </div>
         </div>
 
       {menuOpen && (
-        <div className="border-t border-black/5 bg-white px-8 py-4 sm:px-10 md:hidden">
+        <div className="border-t border-primary-200/70 bg-background/95 px-8 py-4 backdrop-blur-xl sm:px-10 md:hidden">
           <nav className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => {
               const active = pathname === href || (href !== "/" && pathname.startsWith(href));
@@ -196,7 +215,7 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-navy hover:bg-neutral-50"
+                  className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-navy hover:bg-primary-100/60"
                 >
                   {active && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-asset" />}
                   {!active && <span className="w-1.5 shrink-0" />}
