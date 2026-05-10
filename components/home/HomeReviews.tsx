@@ -27,7 +27,7 @@ function StarRow({ rating }: { rating: number }) {
       {Array.from({ length: 5 }, (_, i) => (
         <FaStar
           key={i}
-          className={`h-3.5 w-3.5 ${i < rating ? "text-accent-500" : "text-primary-200"}`}
+          className={`h-3.5 w-3.5 ${i < rating ? "text-yellow-500" : "text-yellow-200"}`}
           aria-hidden
         />
       ))}
@@ -153,11 +153,11 @@ function MarqueeRow({
   return (
     <div className="relative overflow-hidden py-1">
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-white to-transparent sm:w-16"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-home-blue-soft to-transparent sm:w-16"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-white to-transparent sm:w-16"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-home-blue-soft to-transparent sm:w-16"
         aria-hidden
       />
       <div
@@ -185,7 +185,7 @@ export function HomeReviews() {
   return (
     <section
       id="testimonials"
-      className="min-h-svh scroll-mt-16 overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16 [scroll-snap-align:start] [scroll-snap-stop:always]"
+      className="home-band-b min-h-svh scroll-mt-16 overflow-x-hidden px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16 [scroll-snap-align:start] [scroll-snap-stop:always]"
     >
       {/* No Reveal/GSAP: scroll-linked y/scale felt like the section sank while it filled the viewport. */}
       <div className="w-full max-w-full min-w-0">
@@ -208,7 +208,7 @@ export function HomeReviews() {
                   <div className="mt-1 flex items-center gap-2">
                     <div className="flex gap-0.5" aria-hidden>
                       {Array.from({ length: 5 }, (_, i) => (
-                        <FaStar key={i} className="h-4 w-4 text-accent-500" />
+                        <FaStar key={i} className="h-4 w-4 text-yellow-500" />
                       ))}
                     </div>
                     <span className="text-lg font-semibold text-brand-navy">4.9</span>

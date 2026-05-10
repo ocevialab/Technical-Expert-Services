@@ -122,7 +122,7 @@ export function HomeServicesTeaser() {
   }, []);
 
   return (
-    <section className="overflow-x-hidden border-t border-primary-100 bg-white px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
+    <section className="home-band-b overflow-x-hidden px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
       <Reveal className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
         <div className="w-full max-w-full min-w-0">
           <div className="mb-10 flex w-full min-w-0 flex-col gap-5 sm:mb-12 sm:flex-row sm:items-start sm:gap-8 lg:gap-10">

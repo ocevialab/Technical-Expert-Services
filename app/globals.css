@@ -49,6 +49,10 @@ body {
   --color-primary-800: #1971c2;
   --color-primary-900: #1864ab;
 
+  /* Home page — alternating vertical stripes (smooth fades between sections) */
+  --color-home-blue-soft: #f1f7fc;
+  --color-home-blue-pale: #f8fbff;
+
   /* Raised surfaces — matches project cards (subtle lift) */
   --shadow-card: 0 4px 14px -2px rgba(5, 31, 50, 0.06), 0 2px 6px -2px rgba(5, 31, 50, 0.04);
   --shadow-card-hover: 0 6px 18px -2px rgba(5, 31, 50, 0.08), 0 3px 10px -3px rgba(5, 31, 50, 0.05);
@@ -62,6 +66,59 @@ body {
   h1,
   h2 {
     font-family: var(--font-serif);
+  }
+}
+
+/* Smooth vertical bands on the home page (light blue ↔ lighter blue, no hard seams). */
+@layer utilities {
+  .home-marquee-strip {
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent-100) 0%,
+      var(--color-home-blue-pale) 45%,
+      var(--color-home-blue-soft) 100%
+    );
+  }
+
+  .home-band-a {
+    background: linear-gradient(
+      to bottom,
+      var(--color-home-blue-soft) 0%,
+      var(--color-background) 38%,
+      var(--color-background) 62%,
+      var(--color-home-blue-soft) 100%
+    );
+  }
+
+  .home-band-b {
+    background: linear-gradient(
+      to bottom,
+      var(--color-home-blue-soft) 0%,
+      var(--color-home-blue-pale) 44%,
+      var(--color-home-blue-soft) 100%
+    );
+  }
+
+  /* Home → footer: long, even fade into brand navy (avoids visible “bands”). */
+  .home-footer-bridge {
+    height: clamp(7.5rem, 18vw, 14rem);
+    background: linear-gradient(
+      to bottom,
+      var(--color-home-blue-soft) 0%,
+      #e8f1f7 7%,
+      #d8e6ef 14%,
+      #c2d5e3 22%,
+      #a8bdd4 30%,
+      #89a2bf 38%,
+      #6d879f 46%,
+      #556e87 54%,
+      #3f566e 62%,
+      #2e4158 70%,
+      #223347 78%,
+      #182838 86%,
+      #11212f 93%,
+      var(--color-brand-navy) 100%
+    );
   }
 }
 

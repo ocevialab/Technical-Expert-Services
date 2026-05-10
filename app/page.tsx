@@ -40,7 +40,7 @@ export default function HomePage() {
           <div className="mt-8 flex w-full max-w-lg flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-start sm:gap-3">
             <Link
               href="/contact"
-              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full bg-brand-asset px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-600 sm:flex-none"
+              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full bg-brand-navy px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 motion-reduce:hover:brightness-100 sm:flex-none"
             >
               Get Free Quote
             </Link>
@@ -63,7 +63,7 @@ export default function HomePage() {
       </section>
 
       <div
-        className="w-full overflow-hidden bg-accent-200 px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16"
+        className="home-marquee-strip w-full overflow-hidden px-8 py-3.5 sm:px-10 lg:px-14 xl:px-16"
         role="region"
         aria-label="Services highlight"
       >
@@ -91,6 +91,9 @@ export default function HomePage() {
       <HomeProjectsTeaserClient />
 
       <HomeReviews />
+
+      {/* Long multi-stop fade into footer navy — height set in CSS (clamp) */}
+      <div className="home-footer-bridge w-full shrink-0" aria-hidden />
     </>
   );
 }

@@ -167,7 +167,7 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full bg-brand-asset px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-600 md:inline-flex"
+            className="hidden rounded-full bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 motion-reduce:hover:brightness-100 md:inline-flex"
           >
             Get Free Quote
           </Link>
@@ -207,7 +207,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-full bg-brand-asset py-3 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-full bg-brand-navy py-3 text-center text-sm font-semibold text-white transition hover:brightness-110 motion-reduce:hover:brightness-100"
             >
               Get Free Quote
             </Link>

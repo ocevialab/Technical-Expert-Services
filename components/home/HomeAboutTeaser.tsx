@@ -25,7 +25,7 @@ const companyCards = [
 
 export function HomeAboutTeaser() {
   return (
-    <section className="border-t border-primary-100 bg-white px-8 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
+    <section className="home-band-a px-8 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
       <Reveal className="w-full" triggerStart={ABOUT_REVEAL_START}>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
           <div className="flex flex-col gap-6 lg:max-w-xl xl:max-w-2xl xl:gap-8">
