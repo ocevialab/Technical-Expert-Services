@@ -3,8 +3,16 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "./gsap-client";
 
-const LANDSCAPE_IMAGES = ["/assets/bg3.png", "/assets/bg3.jpg", "/assets/bg4.jpg"];
-const PORTRAIT_IMAGES  = ["/assets/bg4-m.jpg", "/assets/bg3-m.jpg", "/assets/image.png"];
+const LANDSCAPE_IMAGES = [
+  "/assets/bg3.png",
+  "/assets/bg3.jpg",
+  "/assets/bg4.jpg",
+];
+const PORTRAIT_IMAGES = [
+  "/assets/bg4-m.jpg",
+  "/assets/bg3-m.jpg",
+  "/assets/image.png",
+];
 
 const HOLD_SECONDS = 6;
 const FADE_SECONDS = 1.8;
@@ -14,18 +22,22 @@ const FADE_SECONDS = 1.8;
  * re-renders this component, avoiding removeChild conflicts on orientation change.
  */
 export function HeroParallaxBg() {
-  const rootRef     = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const root  = rootRef.current;
+    const root = rootRef.current;
     const layer = parallaxRef.current;
     if (!root || !layer) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const lSlides = Array.from(layer.querySelectorAll<HTMLElement>("[data-slide-l]"));
-    const pSlides = Array.from(layer.querySelectorAll<HTMLElement>("[data-slide-p]"));
+    const lSlides = Array.from(
+      layer.querySelectorAll<HTMLElement>("[data-slide-l]"),
+    );
+    const pSlides = Array.from(
+      layer.querySelectorAll<HTMLElement>("[data-slide-p]"),
+    );
     const allSlides = [...lSlides, ...pSlides];
 
     // Hide everything to start
@@ -38,19 +50,32 @@ export function HeroParallaxBg() {
       gsap.set(allSlides, { opacity: 0 });
 
       if (slides.length === 0) return;
-      if (slides.length === 1) { gsap.set(slides[0], { opacity: 1 }); return; }
+      if (slides.length === 1) {
+        gsap.set(slides[0], { opacity: 1 });
+        return;
+      }
 
       gsap.set(slides[0], { opacity: 1 });
       crossfadeTl = gsap.timeline({ repeat: -1 });
       slides.forEach((_, i) => {
         const next = (i + 1) % slides.length;
-        crossfadeTl!.to(slides[next], { opacity: 1, duration: FADE_SECONDS, ease: "power1.inOut" }, `+=${HOLD_SECONDS}`);
-        crossfadeTl!.to(slides[i],    { opacity: 0, duration: FADE_SECONDS, ease: "power1.inOut" }, "<");
+        crossfadeTl!.to(
+          slides[next],
+          { opacity: 1, duration: FADE_SECONDS, ease: "power1.inOut" },
+          `+=${HOLD_SECONDS}`,
+        );
+        crossfadeTl!.to(
+          slides[i],
+          { opacity: 0, duration: FADE_SECONDS, ease: "power1.inOut" },
+          "<",
+        );
       });
     }
 
     // Start with current orientation
-    startCrossfade(window.matchMedia("(orientation: portrait)").matches ? pSlides : lSlides);
+    startCrossfade(
+      window.matchMedia("(orientation: portrait)").matches ? pSlides : lSlides,
+    );
 
     // React to orientation changes without touching React state
     const mq = window.matchMedia("(orientation: portrait)");
@@ -61,16 +86,20 @@ export function HeroParallaxBg() {
     // Parallax
     const ctx = gsap.context(() => {
       gsap.set(layer, { scale: 1.06, transformOrigin: "50% 50%" });
-      gsap.fromTo(layer, { y: 0 }, {
-        y: 36,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.75,
+      gsap.fromTo(
+        layer,
+        { y: 0 },
+        {
+          y: 36,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.75,
+          },
         },
-      });
+      );
     }, root);
 
     return () => {

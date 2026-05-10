@@ -16,6 +16,7 @@ const PAGE_GUTTER = "px-8 sm:px-10 lg:px-14 xl:px-16";
 const BAND_PY = "py-14 sm:py-20";
 
 /** About page visuals — distinct from Services page stock shots */
+const ABOUT_HERO_IMG = "/assets/top-view-paint-can (1).jpg";
 const ABOUT_STORY_IMG = "/assets/bg4-m.jpg";
 const ABOUT_PROCESS_IMG = "/assets/bg3-m.jpg";
 
@@ -67,8 +68,26 @@ export default function AboutPage() {
   return (
     <>
       <section
-        className={`about-hero-unified relative z-0 ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
+        className={`about-hero-unified relative z-0 overflow-hidden ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
       >
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <Image
+            src={ABOUT_HERO_IMG}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[82%_center] opacity-[0.52] sm:object-[72%_center] lg:object-right"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
+              maskSize: "100% 100%",
+              WebkitMaskSize: "100% 100%",
+            }}
+          />
+        </div>
         <RevealParts triggerStart={REVEAL_ON_ENTER} className="relative z-10">
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_20px_rgba(5,31,50,0.45)]">
             <p
