@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { FaStar } from "react-icons/fa6";
+import { RevealParts } from "@/components/motion/RevealParts";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { site } from "@/lib/site";
+
+/** Match other home bands — enter without relying on scroll-linked section transforms. */
+const REVIEWS_REVEAL_START = "top bottom-=28%";
 
 type Review = {
   id: string;
@@ -187,21 +191,27 @@ export function HomeReviews() {
       id="testimonials"
       className="home-band-b min-h-svh scroll-mt-16 overflow-x-hidden px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16 [scroll-snap-align:start] [scroll-snap-stop:always]"
     >
-      {/* No Reveal/GSAP: scroll-linked y/scale felt like the section sank while it filled the viewport. */}
-      <div className="w-full max-w-full min-w-0">
+      <RevealParts className="w-full max-w-full min-w-0" triggerStart={REVIEWS_REVEAL_START}>
+        <div className="w-full max-w-full min-w-0">
           <div className="mb-10 flex w-full min-w-0 flex-col gap-5 sm:mb-12 sm:flex-row sm:items-start sm:gap-8 lg:gap-10">
             <div className="flex min-w-0 max-w-lg flex-col space-y-4 lg:max-w-xl">
-              <SectionTag>Testimonials</SectionTag>
-              <h2 className="min-w-0 max-w-full text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]">
+              <SectionTag data-reveal>Testimonials</SectionTag>
+              <h2
+                data-reveal
+                className="min-w-0 max-w-full text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]"
+              >
                 <span className="block">What our</span>
                 <span className="mt-1 block text-brand-navy/72 sm:mt-2">customers are saying</span>
               </h2>
             </div>
-            <p className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg lg:max-w-lg">
+            <p
+              data-reveal
+              className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg lg:max-w-lg"
+            >
               Real feedback from painting and plumbing clients across {site.areas}. Every job is quoted clearly and
               finished with the same site standards we expect for our own homes.
             </p>
-            <div className="ml-auto flex shrink-0 sm:pt-0.5">
+            <div data-reveal className="ml-auto flex shrink-0 sm:pt-0.5">
               <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-primary-100 bg-white px-5 py-4 shadow-card sm:gap-8 sm:px-6">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Average rating</p>
@@ -223,11 +233,15 @@ export function HomeReviews() {
             <MarqueeRow reviews={rowBottom} direction="left" />
           </div>
 
-          <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-neutral-500 sm:mt-12">
+          <p
+            data-reveal
+            className="mx-auto mt-10 max-w-2xl text-center text-xs text-neutral-500 sm:mt-12"
+          >
             Quotes shown as typical client feedback; names and timelines are illustrative. Ask us for references on
             your next project.
           </p>
-      </div>
+        </div>
+      </RevealParts>
     </section>
   );
 }

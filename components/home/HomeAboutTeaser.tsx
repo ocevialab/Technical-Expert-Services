@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AboutTeaserVideos } from "@/components/home/AboutTeaserVideos";
-import { Reveal } from "@/components/motion/Reveal";
+import { RevealParts } from "@/components/motion/RevealParts";
 import { RevealTitleLines } from "@/components/motion/RevealTitleLines";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { site } from "@/lib/site";
@@ -26,11 +26,11 @@ const companyCards = [
 export function HomeAboutTeaser() {
   return (
     <section className="home-band-a px-8 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
-      <Reveal className="w-full" triggerStart={ABOUT_REVEAL_START}>
+      <RevealParts className="w-full" triggerStart={ABOUT_REVEAL_START}>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
           <div className="flex flex-col gap-6 lg:max-w-xl xl:max-w-2xl xl:gap-8">
             <div className="space-y-4">
-              <SectionTag>About us</SectionTag>
+              <SectionTag data-reveal>About us</SectionTag>
               <RevealTitleLines
                 title="People behind the paint"
                 subtitle="And the pipes you rely on every day"
@@ -39,12 +39,18 @@ export function HomeAboutTeaser() {
                 triggerStart={ABOUT_REVEAL_START}
               />
             </div>
-            <p className="text-pretty text-base leading-relaxed text-neutral-600 sm:text-lg sm:leading-relaxed">
+            <p
+              data-reveal
+              className="text-pretty text-base leading-relaxed text-neutral-600 sm:text-lg sm:leading-relaxed"
+            >
               {site.aboutTeaserIntro}
             </p>
           </div>
 
-          <div className="flex flex-col justify-center rounded-2xl border border-brand-asset/90 bg-brand-asset p-8 shadow-card sm:p-10">
+          <div
+            data-reveal
+            className="flex flex-col justify-center rounded-2xl border border-brand-asset/90 bg-brand-asset p-8 shadow-card sm:p-10"
+          >
             <p className="text-pretty text-base font-normal leading-relaxed text-white/90 sm:text-lg">
               {site.aboutTeaserShort}
             </p>
@@ -58,12 +64,15 @@ export function HomeAboutTeaser() {
             </p>
           </div>
         </div>
-      </Reveal>
+      </RevealParts>
 
-      <Reveal className="mt-12 w-full md:mt-14" triggerStart={ABOUT_REVEAL_START}>
+      <RevealParts className="mt-12 w-full md:mt-14" triggerStart={ABOUT_REVEAL_START}>
         <div>
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch md:gap-5 lg:gap-6">
-            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7">
+            <div
+              data-reveal
+              className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
+            >
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[0].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[0].body}</p>
               <Link
@@ -74,9 +83,14 @@ export function HomeAboutTeaser() {
               </Link>
             </div>
 
-            <AboutTeaserVideos />
+            <div data-reveal className="h-full min-h-0">
+              <AboutTeaserVideos />
+            </div>
 
-            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7">
+            <div
+              data-reveal
+              className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
+            >
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[1].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[1].body}</p>
               <Link
@@ -88,7 +102,7 @@ export function HomeAboutTeaser() {
             </div>
           </div>
 
-          <p className="mt-10 text-center">
+          <p data-reveal className="mt-10 text-center">
             <Link
               href="/about"
               className="text-sm font-semibold text-primary-800 underline-offset-4 hover:text-brand-navy hover:underline sm:text-base"
@@ -97,7 +111,7 @@ export function HomeAboutTeaser() {
             </Link>
           </p>
         </div>
-      </Reveal>
+      </RevealParts>
     </section>
   );
 }

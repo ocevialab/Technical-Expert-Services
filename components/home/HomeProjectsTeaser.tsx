@@ -8,7 +8,7 @@ import {
   ReactCompareSliderCssVars,
   ReactCompareSliderHandle,
 } from "react-compare-slider";
-import { Reveal } from "@/components/motion/Reveal";
+import { RevealParts } from "@/components/motion/RevealParts";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { site } from "@/lib/site";
 
@@ -237,22 +237,28 @@ export function HomeProjectsTeaser() {
 
   return (
     <section className="home-band-a overflow-x-hidden px-4 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-16">
-      <Reveal className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
+      <RevealParts className="w-full max-w-full min-w-0" triggerStart={REVEAL_START}>
         <div className="w-full max-w-full min-w-0">
           <div className="mb-10 flex w-full min-w-0 flex-col gap-5 sm:mb-12 sm:flex-row sm:items-start sm:gap-8 lg:gap-10">
             <div className="flex min-w-0 max-w-lg flex-col space-y-4 lg:max-w-xl">
-              <SectionTag>Selected projects</SectionTag>
-              <h2 className="text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]">
+              <SectionTag data-reveal>Selected projects</SectionTag>
+              <h2
+                data-reveal
+                className="text-balance text-3xl font-normal leading-[1.15] tracking-tight text-brand-navy sm:text-4xl md:text-[2.625rem] md:leading-[1.12]"
+              >
                 See the finish for yourself
               </h2>
             </div>
-            <p className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg sm:leading-relaxed lg:max-w-lg">
+            <p
+              data-reveal
+              className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg sm:leading-relaxed lg:max-w-lg"
+            >
               Real painting and plumbing outcomes from villas, apartments, and
               workplaces across {site.areas}. Drag each handle to compare before
               and after — the gallery will grow as we add more cleared project
               photography.
             </p>
-            <div className="ml-auto flex shrink-0 sm:pt-0.5">
+            <div data-reveal className="ml-auto flex shrink-0 sm:pt-0.5">
               <SliderNav
                 onPrev={() => scrollBy(-1)}
                 onNext={() => scrollBy(1)}
@@ -267,6 +273,7 @@ export function HomeProjectsTeaser() {
             {projects.map((project) => (
               <article
                 key={project.title}
+                data-reveal
                 className="flex shrink-0 snap-start flex-col"
                 title={`${project.title}: ${project.desc}`}
               >
@@ -287,12 +294,14 @@ export function HomeProjectsTeaser() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:mt-12 sm:gap-8">
             <Link
+              data-reveal
               href="/gallery"
               className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-brand-asset bg-transparent px-8 py-3 text-sm font-semibold text-brand-asset transition hover:bg-brand-asset hover:text-white"
             >
               View gallery
             </Link>
             <Link
+              data-reveal
               href="/contact"
               className="text-sm font-semibold text-primary-800 underline-offset-4 hover:text-primary-900 hover:underline"
             >
@@ -303,7 +312,7 @@ export function HomeProjectsTeaser() {
             </Link>
           </div>
         </div>
-      </Reveal>
+      </RevealParts>
     </section>
   );
 }
