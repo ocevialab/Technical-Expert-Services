@@ -35,7 +35,8 @@ export default function HomePage() {
           </h1>
           <p className="mt-5 max-w-2xl text-pretty text-sm font-normal leading-relaxed text-white/92 drop-shadow-md sm:mt-6 sm:max-w-2xl sm:text-base md:max-w-3xl md:text-lg">
             Fast, clean, reliable home maintenance for villas, apartments,
-            offices, and commercial spaces — one trusted team for paint and pipes.
+            offices, and commercial spaces — one trusted team for paint and
+            pipes.
           </p>
           <div className="mt-8 flex w-full max-w-lg flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-start sm:gap-3">
             <Link
@@ -74,7 +75,10 @@ export default function HomePage() {
               className="flex shrink-0 items-center gap-3 px-6 text-sm font-normal uppercase tracking-wide text-brand-navy sm:text-base"
             >
               {tickerItems.map((item, i) => (
-                <span key={`${copy}-${item}`} className="flex items-center gap-3">
+                <span
+                  key={`${copy}-${item}`}
+                  className="flex items-center gap-3"
+                >
                   {i > 0 && <span className="text-brand-navy">•</span>}
                   <span>{item}</span>
                 </span>

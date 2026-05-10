@@ -54,8 +54,10 @@ body {
   --color-home-blue-pale: #f8fbff;
 
   /* Raised surfaces — matches project cards (subtle lift) */
-  --shadow-card: 0 4px 14px -2px rgba(5, 31, 50, 0.06), 0 2px 6px -2px rgba(5, 31, 50, 0.04);
-  --shadow-card-hover: 0 6px 18px -2px rgba(5, 31, 50, 0.08), 0 3px 10px -3px rgba(5, 31, 50, 0.05);
+  --shadow-card:
+    0 4px 14px -2px rgba(5, 31, 50, 0.06), 0 2px 6px -2px rgba(5, 31, 50, 0.04);
+  --shadow-card-hover:
+    0 6px 18px -2px rgba(5, 31, 50, 0.08), 0 3px 10px -3px rgba(5, 31, 50, 0.05);
 
   --font-sans: "Clash Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
@@ -170,7 +172,9 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
+  @supports (
+    background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)
+  ) {
     .about-hero-unified,
     .services-page-hero {
       background: linear-gradient(
@@ -206,7 +210,9 @@ body {
     );
   }
 
-  @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
+  @supports (
+    background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)
+  ) {
     .services-page-hero {
       background: linear-gradient(
         to bottom in oklch,
@@ -250,4 +256,3 @@ body {
     transform: translateX(0);
   }
 }
-
