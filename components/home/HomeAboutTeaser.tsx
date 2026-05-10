@@ -63,7 +63,7 @@ export function HomeAboutTeaser() {
       <Reveal className="mt-12 w-full md:mt-14" triggerStart={ABOUT_REVEAL_START}>
         <div>
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch md:gap-5 lg:gap-6">
-            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-white p-6 shadow-card sm:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7">
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[0].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[0].body}</p>
               <Link
@@ -76,7 +76,7 @@ export function HomeAboutTeaser() {
 
             <AboutTeaserVideos />
 
-            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-white p-6 shadow-card sm:p-7">
+            <div className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7">
               <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[1].title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[1].body}</p>
               <Link
