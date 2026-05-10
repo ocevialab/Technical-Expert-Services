@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "./gsap-client";
 
-const LANDSCAPE_IMAGES = ["/assets/bg4.jpg", "/assets/bg3.png", "/assets/bg3.jpg"];
+const LANDSCAPE_IMAGES = ["/assets/bg3.png", "/assets/bg3.jpg", "/assets/bg4.jpg"];
 const PORTRAIT_IMAGES  = ["/assets/bg4-m.jpg", "/assets/bg3-m.jpg", "/assets/image.png"];
 
 const HOLD_SECONDS = 6;
