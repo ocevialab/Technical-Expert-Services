@@ -66,15 +66,22 @@ export function HomeAboutTeaser() {
         </div>
       </RevealParts>
 
-      <RevealParts className="mt-12 w-full md:mt-14" triggerStart={ABOUT_REVEAL_START}>
+      <RevealParts
+        className="mt-12 w-full md:mt-14"
+        triggerStart={ABOUT_REVEAL_START}
+      >
         <div>
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch md:gap-5 lg:gap-6">
             <div
               data-reveal
               className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
             >
-              <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[0].title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[0].body}</p>
+              <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">
+                {companyCards[0].title}
+              </h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">
+                {companyCards[0].body}
+              </p>
               <Link
                 href={companyCards[0].href}
                 className="mt-6 text-sm font-semibold text-primary-800 underline-offset-4 hover:text-brand-navy hover:underline"
@@ -91,8 +98,12 @@ export function HomeAboutTeaser() {
               data-reveal
               className="flex h-full flex-col rounded-2xl border border-accent-300 bg-primary-50 p-6 shadow-card sm:p-7"
             >
-              <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">{companyCards[1].title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">{companyCards[1].body}</p>
+              <h3 className="text-lg font-normal leading-snug text-brand-navy sm:text-xl">
+                {companyCards[1].title}
+              </h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">
+                {companyCards[1].body}
+              </p>
               <Link
                 href={companyCards[1].href}
                 className="mt-6 text-sm font-semibold text-primary-800 underline-offset-4 hover:text-brand-navy hover:underline"

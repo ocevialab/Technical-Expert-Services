@@ -71,52 +71,13 @@ body {
 
 /* Smooth vertical bands on the home page (light blue ↔ lighter blue, no hard seams). */
 @layer utilities {
-  /**
-   * Home ticker under hero — compressed “about hero” blues (deep → light) in a short band.
-   * Content uses light type; grain matches inner marketing heroes.
-   */
   .home-marquee-strip {
-    position: relative;
-    isolation: isolate;
     background: linear-gradient(
       to bottom,
-      var(--color-primary-900) 0%,
-      var(--color-primary-800) 14%,
-      var(--color-primary-700) 28%,
-      var(--color-primary-600) 42%,
-      var(--color-primary-500) 56%,
-      var(--color-primary-400) 68%,
-      var(--color-primary-300) 78%,
-      var(--color-primary-200) 86%,
-      var(--color-primary-100) 93%,
-      var(--color-accent-50) 100%
+      var(--color-accent-100) 0%,
+      var(--color-home-blue-pale) 45%,
+      var(--color-home-blue-soft) 100%
     );
-  }
-
-  .home-marquee-strip::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.045;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
-    .home-marquee-strip {
-      background: linear-gradient(
-        to bottom in oklch,
-        var(--color-primary-900) 0%,
-        var(--color-primary-700) 32%,
-        var(--color-primary-500) 52%,
-        var(--color-primary-400) 64%,
-        var(--color-primary-300) 74%,
-        var(--color-primary-100) 88%,
-        var(--color-accent-50) 100%
-      );
-    }
   }
 
   .home-band-a {
