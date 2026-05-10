@@ -30,6 +30,7 @@ const REVEAL_SERVICES = "top 70%";
 const PAGE_GUTTER = "px-8 sm:px-10 lg:px-14 xl:px-16";
 const BAND_PY = "py-14 sm:py-20";
 
+const SERVICES_HERO_IMG = "/assets/serviceHeader.jpg";
 const PAINTING_IMG =
   "/assets/handyman-painting-wall-with-roller-brush-dipped-white-paint-handyman-renovating-apartment-redecoration-home-construction-while-renovating-improving-repair-decorating.jpg";
 /** On-site trade work — pairs with plumbing / maintenance story */
@@ -161,8 +162,26 @@ export default function ServicesPage() {
   return (
     <>
       <section
-        className={`services-page-hero relative z-0 ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
+        className={`services-page-hero relative z-0 overflow-hidden ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
       >
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <Image
+            src={SERVICES_HERO_IMG}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[78%_55%] opacity-[0.52] sm:object-[70%_50%] lg:object-[85%_center]"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
+              maskSize: "100% 100%",
+              WebkitMaskSize: "100% 100%",
+            }}
+          />
+        </div>
         <RevealParts triggerStart={REVEAL_SERVICES} className="relative z-10">
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_32px_rgba(5,31,50,0.72),0_1px_6px_rgba(5,31,50,0.55)]">
             <p

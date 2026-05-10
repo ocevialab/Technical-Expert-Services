@@ -137,7 +137,7 @@ body {
   }
 
   /**
-   * Inner marketing heroes (About, Services): OKLCH + grain — see .about-hero-unified.
+   * Inner marketing heroes (About, Services): same vertical gradient, OKLCH when supported, + grain.
    */
   .about-hero-unified,
   .services-page-hero {
@@ -186,43 +186,6 @@ body {
         var(--color-primary-300) 76%,
         var(--color-primary-100) 84%,
         var(--color-home-blue-soft) 94%,
-        var(--color-home-blue-soft) 100%
-      );
-    }
-  }
-
-  /**
-   * Services hero has more lines than About — hold mid blues much lower so paragraph is
-   * never on near-white (overrides shared stops above, including OKLCH).
-   */
-  .services-page-hero {
-    background: linear-gradient(
-      to bottom,
-      var(--color-primary-900) 0%,
-      var(--color-primary-800) 11%,
-      var(--color-primary-700) 22%,
-      var(--color-primary-600) 34%,
-      var(--color-primary-600) 86%,
-      var(--color-primary-500) 91%,
-      var(--color-primary-400) 94%,
-      var(--color-home-blue-soft) 98%,
-      var(--color-home-blue-soft) 100%
-    );
-  }
-
-  @supports (
-    background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)
-  ) {
-    .services-page-hero {
-      background: linear-gradient(
-        to bottom in oklch,
-        var(--color-primary-900) 0%,
-        var(--color-primary-700) 28%,
-        var(--color-primary-600) 52%,
-        var(--color-primary-600) 84%,
-        var(--color-primary-500) 90%,
-        var(--color-primary-400) 93%,
-        var(--color-home-blue-soft) 98%,
         var(--color-home-blue-soft) 100%
       );
     }
