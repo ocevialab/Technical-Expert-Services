@@ -224,16 +224,16 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      <section className={`bg-brand-navy ${PAGE_GUTTER} ${BAND_PY} text-center text-white`}>
+      <section className={`home-band-b ${PAGE_GUTTER} ${BAND_PY} text-center`}>
         <Reveal triggerStart={REVEAL_ON_ENTER}>
-          <h2 className="text-3xl font-normal md:text-4xl">Ready for a walkthrough or quote?</h2>
-          <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-primary-100 sm:text-base">
+          <h2 className="text-3xl font-normal text-brand-navy md:text-4xl">Ready for a walkthrough or quote?</h2>
+          <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-neutral-600 sm:text-base">
             Send photos on WhatsApp or book a site visit — we respond quickly across {site.areas}.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/contact"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-primary-100"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-brand-navy px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 motion-reduce:hover:brightness-100"
             >
               Contact {site.brand}
             </Link>
@@ -241,7 +241,7 @@ export default function AboutPage() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-2 border-white/80 bg-transparent px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-2 border-brand-asset bg-white/80 px-8 py-3 text-sm font-semibold text-brand-asset shadow-sm backdrop-blur-sm transition hover:bg-brand-asset hover:text-white"
             >
               <FaWhatsapp className="h-5 w-5" aria-hidden />
               WhatsApp us
@@ -249,6 +249,8 @@ export default function AboutPage() {
           </div>
         </Reveal>
       </section>
+
+      <div className="home-footer-bridge w-full shrink-0" aria-hidden />
     </>
   );
 }
