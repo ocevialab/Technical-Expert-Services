@@ -69,7 +69,7 @@ export default function AboutPage() {
       <section
         className={`about-hero-unified relative z-0 ${PAGE_GUTTER} -mt-16 pb-20 pt-24 text-center text-white sm:pb-24 sm:pt-28 lg:pb-28`}
       >
-        <Reveal triggerStart={REVEAL_ON_ENTER}>
+        <Reveal triggerStart={REVEAL_ON_ENTER} className="relative z-10">
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_20px_rgba(5,31,50,0.45)]">
             <p className="text-xs font-semibold uppercase tracking-widest text-white/95 sm:text-sm">
               About us
@@ -84,7 +84,9 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      <section className={`home-band-a ${PAGE_GUTTER} pb-14 pt-6 sm:pb-20 sm:pt-8`}>
+      <section
+        className={`home-band-a ${PAGE_GUTTER} -mt-px pb-14 pt-[calc(1.5rem+1px)] sm:pb-20 sm:pt-[calc(2rem+1px)]`}
+      >
         <Reveal triggerStart={REVEAL_ON_ENTER}>
           <div className="w-full">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">

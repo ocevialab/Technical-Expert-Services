@@ -141,10 +141,10 @@ export default function Navbar() {
       }}
     >
       <div
-        className={`${
+        className={`isolate ${
           glassHeroNav
             ? "border-b border-transparent bg-transparent shadow-none"
-            : "border-b border-primary-200/70 bg-background/88 shadow-[0_8px_30px_-12px_rgba(5,31,50,0.08)] backdrop-blur-md"
+            : "border-b border-transparent bg-background/92 shadow-none backdrop-blur-sm"
         } motion-reduce:transition-none`}
         style={{
           transition: `background-color ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1), border-color ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow ${NAV_SURFACE_MS}ms cubic-bezier(0.33, 1, 0.68, 1)`,
@@ -206,7 +206,7 @@ export default function Navbar() {
         </div>
 
       {menuOpen && (
-        <div className="border-t border-primary-200/70 bg-background/95 px-8 py-4 backdrop-blur-xl sm:px-10 md:hidden">
+        <div className="border-t border-primary-100/40 bg-background/95 px-8 py-4 backdrop-blur-md sm:px-10 md:hidden">
           <nav className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => {
               const active = pathname === href || (href !== "/" && pathname.startsWith(href));

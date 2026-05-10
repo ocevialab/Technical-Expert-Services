@@ -135,26 +135,51 @@ body {
   }
 
   /**
-   * About hero: deep blues hold longer behind the headline block; fade accelerates
-   * in the lower padding so white copy never sits on near-white.
+   * About hero: OKLCH interpolation reduces visible banding vs many sRGB stops; subtle
+   * grain (::after) breaks residual 8-bit steps on some displays.
    */
   .about-hero-unified {
+    position: relative;
+    isolation: isolate;
     background: linear-gradient(
       to bottom,
       var(--color-primary-900) 0%,
-      var(--color-primary-800) 12%,
-      var(--color-primary-700) 26%,
-      var(--color-primary-700) 58%,
-      var(--color-primary-600) 64%,
-      var(--color-primary-500) 69%,
-      var(--color-primary-400) 74%,
-      var(--color-primary-300) 79%,
-      var(--color-primary-200) 84%,
-      var(--color-primary-100) 88%,
-      var(--color-accent-100) 92%,
-      var(--color-home-blue-soft) 97%,
+      var(--color-primary-800) 10%,
+      var(--color-primary-700) 22%,
+      var(--color-primary-600) 32%,
+      var(--color-primary-500) 41%,
+      var(--color-primary-400) 49%,
+      var(--color-primary-300) 56%,
+      var(--color-primary-100) 66%,
+      var(--color-accent-50) 74%,
+      var(--color-home-blue-soft) 84%,
       var(--color-home-blue-soft) 100%
     );
+  }
+
+  .about-hero-unified::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @supports (background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)) {
+    .about-hero-unified {
+      background: linear-gradient(
+        to bottom in oklch,
+        var(--color-primary-900) 0%,
+        var(--color-primary-700) 30%,
+        var(--color-primary-500) 48%,
+        var(--color-primary-300) 62%,
+        var(--color-primary-100) 76%,
+        var(--color-home-blue-soft) 100%
+      );
+    }
   }
 }
 
