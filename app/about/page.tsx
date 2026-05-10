@@ -15,9 +15,9 @@ const PAGE_GUTTER = "px-8 sm:px-10 lg:px-14 xl:px-16";
 /** Match HomeAboutTeaser / primary content strips — not carousel px-4 sections. */
 const BAND_PY = "py-14 sm:py-20";
 
-const PAINTING_IMG =
-  "/assets/handyman-painting-wall-with-roller-brush-dipped-white-paint-handyman-renovating-apartment-redecoration-home-construction-while-renovating-improving-repair-decorating.jpg";
-const SITE_IMG = "/assets/pexels-mario-vasquez-rioja-560959392-17014386.jpg";
+/** About page visuals — distinct from Services page stock shots */
+const ABOUT_STORY_IMG = "/assets/bg4-m.jpg";
+const ABOUT_PROCESS_IMG = "/assets/bg3-m.jpg";
 
 const team = [
   { name: "Ahmed Al Mansoori", role: "Operations & estimating", years: "UAE programmes since 2012" },
@@ -112,10 +112,10 @@ export default function AboutPage() {
               <div className="order-1 lg:order-2">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-primary-100/90 shadow-card">
                   <Image
-                    src={PAINTING_IMG}
-                    alt="Painter applying finish coat on a residential wall"
+                    src={ABOUT_STORY_IMG}
+                    alt="Residential interior — finishing and property care across homes we serve in the UAE"
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority
                   />
@@ -177,8 +177,8 @@ export default function AboutPage() {
               <div className="relative grid min-h-0 lg:h-full lg:grid-rows-[minmax(0,1fr)_auto]">
                 <div className="relative aspect-[4/3] min-h-[14rem] overflow-hidden rounded-2xl border border-primary-100/90 shadow-card lg:aspect-auto lg:min-h-0">
                   <Image
-                    src={SITE_IMG}
-                    alt="Trade professional on site reviewing work"
+                    src={ABOUT_PROCESS_IMG}
+                    alt="Trade professional completing finishing work on site"
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 1024px) 100vw, 45vw"
