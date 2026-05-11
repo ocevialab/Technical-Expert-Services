@@ -1,27 +1,25 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
-import { useState } from "react";
 import {
   FaChevronDown,
-  FaCircleCheck,
   FaEnvelope,
   FaLocationDot,
   FaPhone,
   FaTriangleExclamation,
   FaWhatsapp,
 } from "react-icons/fa6";
-import { Reveal } from "@/components/motion/Reveal";
-import { RevealParts } from "@/components/motion/RevealParts";
+import { ContactForm } from "./ContactForm";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { site, whatsappHref } from "@/lib/site";
 
-const REVEAL_ON_ENTER = "top bottom-=28%";
+export const metadata: Metadata = {
+  title: `Contact — ${site.brand}`,
+  description: `Get a quote or book a visit. Phone, WhatsApp, email, and inquiry form for ${site.brand} across ${site.areas}.`,
+};
+
 const PAGE_GUTTER = "px-8 sm:px-10 lg:px-14 xl:px-16";
 const BAND_PY = "py-14 sm:py-20";
-/** Hero image — same family as Services inner hero for a consistent marketing header. */
 const CONTACT_HERO_IMG = "/assets/serviceHeader.jpg";
-/** FAQ band — left column visual (distinct from hero). */
 const FAQ_SIDE_IMG = "/assets/bg3-m.jpg";
 
 const faqs = [
@@ -51,31 +49,9 @@ const faqs = [
   },
 ] as const;
 
+const contactInfoIconClass = "mt-0.5 h-6 w-6 shrink-0 text-brand-asset";
+
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    service: "",
-    message: "",
-  });
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
-
-  const fieldClass =
-    "w-full rounded-xl border border-primary-200 bg-white px-4 py-2.5 text-sm text-foreground placeholder:text-neutral-500 focus:border-brand-asset focus:outline-none focus:ring-2 focus:ring-brand-asset/25";
-
-  const contactInfoIconClass = "mt-0.5 h-6 w-6 shrink-0 text-brand-asset";
-
   return (
     <>
       <section
@@ -99,302 +75,155 @@ export default function ContactPage() {
             }}
           />
         </div>
-        <RevealParts triggerStart={REVEAL_ON_ENTER} className="relative z-10">
+        <div className="relative z-10">
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_32px_rgba(5,31,50,0.72),0_1px_6px_rgba(5,31,50,0.55)]">
-            <p
-              data-reveal
-              className="text-xs font-semibold uppercase tracking-widest text-white/95 sm:text-sm"
-            >
-              Contact
-            </p>
-            <h1
-              data-reveal
-              className="mt-3 text-3xl font-normal leading-tight sm:mt-4 sm:text-4xl md:text-5xl lg:text-[3.15rem]"
-            >
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/95 sm:text-sm">Contact</p>
+            <h1 className="mt-3 text-3xl font-normal leading-tight sm:mt-4 sm:text-4xl md:text-5xl lg:text-[3.15rem]">
               Get in touch
             </h1>
-            <p
-              data-reveal
-              className="mx-auto mt-3 max-w-2xl text-pretty text-base leading-relaxed text-white sm:mt-4 sm:text-lg"
-            >
-              Request a free quotation, send site photos, or book a visit. We aim to reply within about one
-              hour during business hours across {site.areas}.
+            <p className="mx-auto mt-3 max-w-2xl text-pretty text-base leading-relaxed text-white sm:mt-4 sm:text-lg">
+              Request a free quotation, send site photos, or book a visit. We aim to reply within about one hour
+              during business hours across {site.areas}.
             </p>
           </div>
-        </RevealParts>
+        </div>
       </section>
 
       <section
         className={`home-band-a ${PAGE_GUTTER} -mt-px pb-14 pt-[calc(1.5rem+1px)] sm:pb-20 sm:pt-[calc(2rem+1px)]`}
       >
-        <Reveal>
-          <div className="grid w-full gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-            <div className="lg:max-w-xl xl:max-w-2xl">
-              <SectionTag className="mb-4">Contact</SectionTag>
-              <h2 className="mb-6 text-2xl font-normal text-brand-navy">How to reach us</h2>
-              <ul className="space-y-5 text-foreground">
-                <li className="flex items-start gap-4">
-                  <FaPhone className={contactInfoIconClass} aria-hidden />
-                  <div>
-                    <p className="font-semibold text-brand-navy">Phone</p>
-                    <a href={site.phoneTel} className="text-brand-asset hover:underline">
-                      {site.phoneDisplay}
-                    </a>
-                    <p className="mt-0.5 text-xs text-neutral-600">Emergency plumbing — call anytime</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <FaWhatsapp className={contactInfoIconClass} aria-hidden />
-                  <div>
-                    <p className="font-semibold text-brand-navy">WhatsApp</p>
-                    <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-asset hover:underline"
-                    >
-                      Message {site.brand}
-                    </a>
-                    <p className="mt-0.5 text-xs text-neutral-600">Photos welcome for faster estimates</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <FaEnvelope className={contactInfoIconClass} aria-hidden />
-                  <div>
-                    <p className="font-semibold text-brand-navy">Email</p>
-                    <a href={`mailto:${site.email}`} className="text-brand-asset hover:underline">
-                      {site.email}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <FaLocationDot className={contactInfoIconClass} aria-hidden />
-                  <div>
-                    <p className="font-semibold text-brand-navy">Service areas</p>
-                    <p>{site.areas}</p>
-                    <p className="mt-0.5 text-xs text-neutral-600">
-                      Sun–Thu 8am–7pm · Fri 9am–2pm · Sat by appointment
-                    </p>
-                  </div>
-                </li>
-              </ul>
-
-              <div className="mt-8 rounded-2xl border border-accent-100 bg-accent-50/80 p-5 shadow-card">
-                <p className="mb-1 flex items-center gap-2 font-normal text-brand-navy">
-                  <FaTriangleExclamation className="h-5 w-5 shrink-0 text-accent-700" aria-hidden />
-                  Active leak or flooding?
-                </p>
-                <p className="text-sm text-foreground">
-                  Call or WhatsApp immediately — we prioritise water shut-off and temporary repairs, then
-                  schedule the full fix.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <a
-                    href={site.phoneTel}
-                    className="inline-block rounded-xl bg-brand-asset px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-600"
-                  >
-                    Call now
+        <div className="grid w-full gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+          <div className="lg:max-w-xl xl:max-w-2xl">
+            <SectionTag className="mb-4">Contact</SectionTag>
+            <h2 className="mb-6 text-2xl font-normal text-brand-navy">How to reach us</h2>
+            <ul className="space-y-5 text-foreground">
+              <li className="flex items-start gap-4">
+                <FaPhone className={contactInfoIconClass} aria-hidden />
+                <div>
+                  <p className="font-semibold text-brand-navy">Phone</p>
+                  <a href={`tel:${site.phoneTel}`} className="text-brand-asset hover:underline">
+                    {site.phoneDisplay}
                   </a>
+                  <p className="mt-0.5 text-xs text-neutral-600">Emergency plumbing — call anytime</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <FaWhatsapp className={contactInfoIconClass} aria-hidden />
+                <div>
+                  <p className="font-semibold text-brand-navy">WhatsApp</p>
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block rounded-xl border-2 border-brand-asset bg-white px-5 py-2.5 text-sm font-semibold text-brand-asset transition-colors hover:bg-brand-asset hover:text-white"
+                    className="text-brand-asset hover:underline"
                   >
-                    WhatsApp
+                    Message {site.brand}
+                  </a>
+                  <p className="mt-0.5 text-xs text-neutral-600">Photos welcome for faster estimates</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <FaEnvelope className={contactInfoIconClass} aria-hidden />
+                <div>
+                  <p className="font-semibold text-brand-navy">Email</p>
+                  <a href={`mailto:${site.email}`} className="text-brand-asset hover:underline">
+                    {site.email}
                   </a>
                 </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <FaLocationDot className={contactInfoIconClass} aria-hidden />
+                <div>
+                  <p className="font-semibold text-brand-navy">Service areas</p>
+                  <p>{site.areas}</p>
+                  <p className="mt-0.5 text-xs text-neutral-600">
+                    Sun–Thu 8am–7pm · Fri 9am–2pm · Sat by appointment
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <div className="mt-8 rounded-2xl border border-accent-100 bg-accent-50/80 p-5 shadow-card">
+              <p className="mb-1 flex items-center gap-2 font-normal text-brand-navy">
+                <FaTriangleExclamation className="h-5 w-5 shrink-0 text-accent-700" aria-hidden />
+                Active leak or flooding?
+              </p>
+              <p className="text-sm text-foreground">
+                Call or WhatsApp immediately — we prioritise water shut-off and temporary repairs, then schedule the
+                full fix.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a
+                  href={`tel:${site.phoneTel}`}
+                  className="inline-block rounded-xl bg-brand-asset px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-600"
+                >
+                  Call now
+                </a>
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-xl border-2 border-brand-asset bg-white px-5 py-2.5 text-sm font-semibold text-brand-asset transition-colors hover:bg-brand-asset hover:text-white"
+                >
+                  WhatsApp
+                </a>
               </div>
             </div>
-
-            <div className="rounded-2xl border border-primary-100 bg-white/90 p-6 shadow-card sm:p-8">
-              <h2 className="mb-6 text-2xl font-normal text-brand-navy">Inquiry form</h2>
-              {submitted ? (
-                <div className="rounded-2xl border border-green-200 bg-green-50/90 p-8 text-center">
-                  <div className="mb-4 flex justify-center text-green-700">
-                    <FaCircleCheck className="h-12 w-12" aria-hidden />
-                  </div>
-                  <h3 className="mb-2 text-xl font-normal text-green-800">Request received</h3>
-                  <p className="text-sm text-green-800/90">
-                    Thank you, {form.name}. Our coordinator will contact you shortly on the number or email
-                    you provided.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSubmitted(false);
-                      setForm({ name: "", email: "", phone: "", location: "", service: "", message: "" });
-                    }}
-                    className="mt-5 text-sm font-medium text-brand-asset hover:underline"
-                  >
-                    Send another inquiry
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-brand-navy">
-                      Name *
-                    </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      className={fieldClass}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="contact-phone" className="mb-1 block text-sm font-medium text-brand-navy">
-                        Phone *
-                      </label>
-                      <input
-                        id="contact-phone"
-                        type="tel"
-                        name="phone"
-                        required
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="+971 50 000 0000"
-                        className={fieldClass}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="contact-email" className="mb-1 block text-sm font-medium text-brand-navy">
-                        Email
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="you@example.com"
-                        className={fieldClass}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="contact-location" className="mb-1 block text-sm font-medium text-brand-navy">
-                      Area / community
-                    </label>
-                    <input
-                      id="contact-location"
-                      type="text"
-                      name="location"
-                      value={form.location}
-                      onChange={handleChange}
-                      placeholder="e.g. JVC, Dubai Marina, Sharjah"
-                      className={fieldClass}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="contact-service" className="mb-1 block text-sm font-medium text-brand-navy">
-                      Service type *
-                    </label>
-                    <select
-                      id="contact-service"
-                      name="service"
-                      required
-                      value={form.service}
-                      onChange={handleChange}
-                      className={fieldClass}
-                    >
-                      <option value="">Select…</option>
-                      <option>Painting service</option>
-                      <option>Plumbing service</option>
-                      <option>Emergency repair</option>
-                      <option>Maintenance work</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="contact-message" className="mb-1 block text-sm font-medium text-brand-navy">
-                      Message *
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      required
-                      value={form.message}
-                      onChange={handleChange}
-                      rows={4}
-                      placeholder="Describe the work, preferred dates, and access notes…"
-                      className={`${fieldClass} resize-none`}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full rounded-xl bg-brand-asset py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-600"
-                  >
-                    Submit inquiry
-                  </button>
-                  <p className="text-center text-xs text-neutral-600">
-                    For photos, you can attach them on WhatsApp — we never share your details with third
-                    parties.
-                  </p>
-                </form>
-              )}
-            </div>
           </div>
-        </Reveal>
+
+          <ContactForm />
+        </div>
       </section>
 
       <section
         className={`home-band-b ${PAGE_GUTTER} ${BAND_PY} border-t border-primary-100/80`}
         aria-labelledby="contact-faq-heading"
       >
-        <Reveal>
-          <div className="grid w-full items-stretch gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-            <div className="flex h-full w-full flex-col lg:min-h-0">
-              <div className="relative aspect-4/3 w-full min-h-0 flex-1 overflow-hidden rounded-xl border border-primary-100 bg-white/90 shadow-card lg:aspect-auto lg:min-h-56">
-                <Image
-                  src={FAQ_SIDE_IMG}
-                  alt="On-site work across the UAE — ask us anything before you book"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-            <div className="min-w-0">
-              <SectionTag className="mb-4">FAQ</SectionTag>
-              <h2 id="contact-faq-heading" className="mb-3 text-2xl font-normal text-brand-navy sm:text-3xl">
-                Common questions
-              </h2>
-              <p className="mb-8 text-pretty text-foreground">
-                Quick answers about quotes, coverage, and emergencies. Still unsure?{" "}
-                <a href={whatsappHref} className="font-medium text-brand-asset hover:underline">
-                  WhatsApp us
-                </a>{" "}
-                or use the form above.
-              </p>
-              <div className="flex flex-col gap-3">
-                {faqs.map((item) => (
-                  <details
-                    key={item.q}
-                    className="group rounded-xl border border-primary-100 bg-white/90 px-4 py-3 shadow-card open:border-accent-200 open:shadow-card-hover sm:px-5 sm:py-4"
-                  >
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-left font-medium text-brand-navy marker:content-none [&::-webkit-details-marker]:hidden">
-                      <span>{item.q}</span>
-                      <FaChevronDown
-                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-asset transition-transform duration-200 group-open:rotate-180"
-                        aria-hidden
-                      />
-                    </summary>
-                    <p className="mt-3 border-t border-primary-100 pt-3 text-sm leading-relaxed text-foreground">
-                      {item.a}
-                    </p>
-                  </details>
-                ))}
-              </div>
+        <div className="grid w-full items-stretch gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+          <div className="flex h-full w-full flex-col lg:min-h-0">
+            <div className="relative aspect-4/3 w-full min-h-0 flex-1 overflow-hidden rounded-xl border border-primary-100 bg-white/90 shadow-card lg:aspect-auto lg:min-h-56">
+              <Image
+                src={FAQ_SIDE_IMG}
+                alt="On-site work across the UAE — ask us anything before you book"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
-        </Reveal>
+          <div className="min-w-0">
+            <SectionTag className="mb-4">FAQ</SectionTag>
+            <h2 id="contact-faq-heading" className="mb-3 text-2xl font-normal text-brand-navy sm:text-3xl">
+              Common questions
+            </h2>
+            <p className="mb-8 text-pretty text-foreground">
+              Quick answers about quotes, coverage, and emergencies. Still unsure?{" "}
+              <a href={whatsappHref} className="font-medium text-brand-asset hover:underline">
+                WhatsApp us
+              </a>{" "}
+              or use the form above.
+            </p>
+            <div className="flex flex-col gap-3">
+              {faqs.map((item) => (
+                <details
+                  key={item.q}
+                  className="group rounded-xl border border-primary-100 bg-white/90 px-4 py-3 shadow-card open:border-accent-200 open:shadow-card-hover sm:px-5 sm:py-4"
+                >
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-left font-medium text-brand-navy marker:content-none [&::-webkit-details-marker]:hidden">
+                    <span>{item.q}</span>
+                    <FaChevronDown
+                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-asset transition-transform duration-200 group-open:rotate-180"
+                      aria-hidden
+                    />
+                  </summary>
+                  <p className="mt-3 border-t border-primary-100 pt-3 text-sm leading-relaxed text-foreground">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
