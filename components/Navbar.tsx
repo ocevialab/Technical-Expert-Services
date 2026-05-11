@@ -12,7 +12,7 @@ const HOME_SOLID_ENTER = 168;
 /** Hysteresis: transparent hero again only after scrolling back up above this. */
 const HOME_SOLID_EXIT = 72;
 /** Blue-gradient hero on inner pages (nav matches About until scroll). */
-const INNER_BLUE_HERO_PATHS = new Set(["/about", "/services"]);
+const INNER_BLUE_HERO_PATHS = new Set(["/about", "/services", "/contact"]);
 const INNER_HERO_SOLID_ENTER = 220;
 const INNER_HERO_SOLID_EXIT = 72;
 /** Slide hide / show (transform only — feels smoother than mixing with bg). */
@@ -25,6 +25,7 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 function LogoMark({ className }: { className?: string }) {

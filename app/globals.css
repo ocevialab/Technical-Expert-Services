@@ -137,10 +137,11 @@ body {
   }
 
   /**
-   * Inner marketing heroes (About, Services): same vertical gradient, OKLCH when supported, + grain.
+   * Inner marketing heroes (About, Services, Contact): same vertical gradient, OKLCH when supported, + grain.
    */
   .about-hero-unified,
-  .services-page-hero {
+  .services-page-hero,
+  .contact-page-hero {
     position: relative;
     isolation: isolate;
     background: linear-gradient(
@@ -161,7 +162,8 @@ body {
   }
 
   .about-hero-unified::after,
-  .services-page-hero::after {
+  .services-page-hero::after,
+  .contact-page-hero::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -176,7 +178,8 @@ body {
     background: linear-gradient(to bottom in oklch, #fff 0%, #000 100%)
   ) {
     .about-hero-unified,
-    .services-page-hero {
+    .services-page-hero,
+    .contact-page-hero {
       background: linear-gradient(
         to bottom in oklch,
         var(--color-primary-900) 0%,
