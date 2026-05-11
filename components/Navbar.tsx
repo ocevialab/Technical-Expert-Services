@@ -13,6 +13,12 @@ const HOME_SOLID_ENTER = 168;
 const HOME_SOLID_EXIT = 72;
 /** Blue-gradient hero on inner pages (nav matches About until scroll). */
 const INNER_BLUE_HERO_PATHS = new Set(["/about", "/services", "/contact"]);
+
+function isInnerBlueHeroPath(pathname: string) {
+  if (INNER_BLUE_HERO_PATHS.has(pathname)) return true;
+  if (pathname === "/gallery") return true;
+  return false;
+}
 const INNER_HERO_SOLID_ENTER = 220;
 const INNER_HERO_SOLID_EXIT = 72;
 /** Slide hide / show (transform only — feels smoother than mixing with bg). */
@@ -58,7 +64,7 @@ export default function Navbar() {
   const [innerBluePastHero, setInnerBluePastHero] = useState(false);
   const lastScrollY = useRef(0);
   const isHome = pathname === "/";
-  const isInnerBlueHero = INNER_BLUE_HERO_PATHS.has(pathname);
+  const isInnerBlueHero = isInnerBlueHeroPath(pathname);
   const glassHeroNav =
     (isHome && !menuOpen && !homePastHero) || (isInnerBlueHero && !menuOpen && !innerBluePastHero);
 
@@ -71,7 +77,7 @@ export default function Navbar() {
     } else {
       setHomePastHero(false);
     }
-    if (INNER_BLUE_HERO_PATHS.has(pathname)) {
+    if (isInnerBlueHeroPath(pathname)) {
       setInnerBluePastHero(y > INNER_HERO_SOLID_ENTER);
     } else {
       setInnerBluePastHero(false);

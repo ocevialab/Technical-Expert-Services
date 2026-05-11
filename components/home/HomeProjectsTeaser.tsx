@@ -3,94 +3,13 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import { useCallback, useRef } from "react";
-import {
-  ReactCompareSlider,
-  ReactCompareSliderCssVars,
-  ReactCompareSliderHandle,
-} from "react-compare-slider";
+import { ProjectCompareSlider } from "@/components/gallery/ProjectCompareSlider";
 import { RevealParts } from "@/components/motion/RevealParts";
 import { SectionTag } from "@/components/ui/SectionTag";
+import { getHomeFeaturedProjects } from "@/lib/projects";
 import { site } from "@/lib/site";
 
 const REVEAL_START = "top bottom-=28%";
-
-const HERO_IMAGE = "/assets/bg.jpg";
-
-type ProjectCard = {
-  title: string;
-  desc: string;
-  imageAlt: string;
-  /** When set with `afterSrc`, real before/after assets; otherwise `HERO_IMAGE` + filter/position. */
-  beforeSrc?: string;
-  afterSrc?: string;
-  beforePosition: string;
-  afterPosition: string;
-  beforeFilter: string;
-  defaultPosition: number;
-};
-
-const projects: ProjectCard[] = [
-  {
-    title: "Villa exterior repaint — JVC",
-    desc: "Full prep, weather-resistant coatings, and tidy masking around glazing — curb appeal restored before handover.",
-    imageAlt: "Villa exterior painting before and after",
-    beforeSrc: "/assets/project1-1-before.png",
-    afterSrc: "/assets/project1-1-after.png",
-    beforePosition: "object-cover object-center",
-    afterPosition: "object-cover object-center",
-    beforeFilter: "",
-    defaultPosition: 48,
-  },
-  {
-    title: "Bathroom leak & siliconing — Dubai Marina",
-    desc: "Ceiling stain traced, repair completed, and wet-area siliconing redone — minimal opening, tidy reinstatement.",
-    imageAlt: "Bathroom plumbing and finishing before and after",
-    beforeSrc: "/assets/project2-before.png",
-    afterSrc: "/assets/project2-after.png",
-    beforePosition: "object-[center_55%]",
-    afterPosition: "object-[center_40%]",
-    beforeFilter: "brightness(0.72) saturate(0.65)",
-    defaultPosition: 52,
-  },
-  {
-    title: "Office corridor repaint — Business Bay",
-    desc: "Evening slots, cordoned walkways, and a durable scrubbable system so the floor could keep operating.",
-    imageAlt: "Commercial corridor painting before and after",
-    beforeSrc: "/assets/project3-before.png",
-    afterSrc: "/assets/project3-after.png",
-    beforePosition: "object-[center_45%]",
-    afterPosition: "object-[center_35%]",
-    beforeFilter: "grayscale(20%) brightness(0.8) contrast(0.88)",
-    defaultPosition: 44,
-  },
-  {
-    title: "Emergency pipe repair — Sharjah",
-    desc: "Pressure-tested copper repair after a concealed line weep — site left clean and documented for your records.",
-    imageAlt: "Plumbing repair work before and after",
-    beforePosition: "object-[center_50%]",
-    afterPosition: "object-[center_58%]",
-    beforeFilter: "brightness(0.74) saturate(0.7)",
-    defaultPosition: 50,
-  },
-  {
-    title: "Retail storefront refresh — Ajman",
-    desc: "High-traffic shopfront prep, brand colours matched to sample boards, and a fast reopen window so trading could resume.",
-    imageAlt: "Retail shop interior painting before and after",
-    beforePosition: "object-[center_33%]",
-    afterPosition: "object-[center_46%]",
-    beforeFilter: "grayscale(25%) brightness(0.8) contrast(0.9)",
-    defaultPosition: 48,
-  },
-  {
-    title: "Kitchen sink & waste rework — Dubai Hills",
-    desc: "New sink bowl, trap, and waste run with leak-free joints — coordinated with your countertop supplier for a clean cut-in.",
-    imageAlt: "Kitchen plumbing installation before and after",
-    beforePosition: "object-[center_48%]",
-    afterPosition: "object-[center_62%]",
-    beforeFilter: "brightness(0.7) saturate(0.68)",
-    defaultPosition: 54,
-  },
-];
 
 function SliderNav({
   onPrev,
@@ -121,112 +40,9 @@ function SliderNav({
   );
 }
 
-function ComparePane({
-  src,
-  positionClass,
-  filter,
-  label,
-  side,
-  alt,
-}: {
-  src: string;
-  positionClass: string;
-  filter?: string;
-  label: string;
-  side: "before" | "after";
-  alt: string;
-}) {
-  return (
-    <div className="relative h-full min-h-0 w-full min-w-0">
-      {/* Native <img>: next/image fill wraps extra nodes that break react-compare-slider clipping (one side blank). */}
-      <img
-        src={src}
-        alt={alt}
-        className={`absolute inset-0 h-full w-full ${positionClass}`}
-        style={filter ? { filter } : undefined}
-        draggable={false}
-        loading="eager"
-        decoding="async"
-      />
-      <span
-        className={`pointer-events-none absolute top-3 rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${
-          side === "before"
-            ? "left-3 bg-brand-asset/88 text-white"
-            : "right-3 bg-accent-200/95 text-brand-navy"
-        }`}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function ProjectCompareCard({ project }: { project: ProjectCard }) {
-  const sliderStyle = {
-    [ReactCompareSliderCssVars.handleColor]: "#ffffff",
-  } as React.CSSProperties;
-
-  const usesPair = Boolean(project.beforeSrc && project.afterSrc);
-  const beforeSrc = project.beforeSrc ?? HERO_IMAGE;
-  const afterSrc = project.afterSrc ?? HERO_IMAGE;
-  const beforeFilter = usesPair ? undefined : project.beforeFilter || undefined;
-  const beforeClass = usesPair
-    ? project.beforePosition
-    : `object-cover ${project.beforePosition}`;
-  const afterClass = usesPair
-    ? project.afterPosition
-    : `object-cover ${project.afterPosition}`;
-
-  return (
-    <div className="relative aspect-3/2 w-full shrink-0 overflow-hidden">
-      <ReactCompareSlider
-        className="h-full w-full"
-        style={sliderStyle}
-        defaultPosition={project.defaultPosition}
-        onlyHandleDraggable
-        itemOne={
-          <ComparePane
-            src={beforeSrc}
-            side="before"
-            label="Before"
-            positionClass={beforeClass}
-            filter={beforeFilter}
-            alt={`${project.imageAlt} — before`}
-          />
-        }
-        itemTwo={
-          <ComparePane
-            src={afterSrc}
-            side="after"
-            label="After"
-            positionClass={afterClass}
-            alt={`${project.imageAlt} — after`}
-          />
-        }
-        handle={
-          <ReactCompareSliderHandle
-            buttonStyle={{
-              backgroundColor: "#ffffff",
-              border: "3px solid #4c99e0",
-              boxShadow: "0 4px 14px rgba(5, 31, 50, 0.18)",
-              width: "2.75rem",
-              height: "2.75rem",
-            }}
-            linesStyle={{
-              width: 3,
-              opacity: 1,
-              backgroundColor: "#ffffff",
-            }}
-          />
-        }
-        aria-label={`Before and after comparison: ${project.title}`}
-      />
-    </div>
-  );
-}
-
 export function HomeProjectsTeaser() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const projects = getHomeFeaturedProjects();
 
   const scrollBy = useCallback((direction: 1 | -1) => {
     const el = scrollerRef.current;
@@ -253,16 +69,11 @@ export function HomeProjectsTeaser() {
               data-reveal
               className="min-w-0 w-full max-w-sm text-pretty text-base leading-relaxed text-neutral-600 sm:max-w-md sm:pt-0.5 sm:text-lg sm:leading-relaxed lg:max-w-lg"
             >
-              Real painting and plumbing outcomes from villas, apartments, and
-              workplaces across {site.areas}. Drag each handle to compare before
-              and after — the gallery will grow as we add more cleared project
-              photography.
+              Real painting and plumbing outcomes from villas, apartments, and workplaces across {site.areas}. Drag
+              each handle to compare before and after — open any card for the full case study and more photos.
             </p>
             <div data-reveal className="ml-auto flex shrink-0 sm:pt-0.5">
-              <SliderNav
-                onPrev={() => scrollBy(-1)}
-                onNext={() => scrollBy(1)}
-              />
+              <SliderNav onPrev={() => scrollBy(-1)} onNext={() => scrollBy(1)} />
             </div>
           </div>
 
@@ -272,20 +83,27 @@ export function HomeProjectsTeaser() {
           >
             {projects.map((project) => (
               <article
-                key={project.title}
+                key={project.slug}
                 data-reveal
                 className="flex shrink-0 snap-start flex-col"
-                title={`${project.title}: ${project.desc}`}
+                title={`${project.title}: ${project.summary}`}
               >
                 <div className="flex h-[398px] w-[min(280px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-primary-100 bg-white shadow-card sm:h-[412px] sm:w-[320px] sm:rounded-3xl">
-                  <ProjectCompareCard project={project} />
+                  <ProjectCompareSlider project={project} className="relative aspect-3/2 w-full shrink-0 overflow-hidden" />
                   <div className="flex min-h-0 flex-1 flex-col border-t border-primary-100/90 px-4 pb-4 pt-3 text-left sm:px-5 sm:pb-5 sm:pt-4">
                     <h3 className="line-clamp-2 text-lg font-normal leading-snug text-brand-navy sm:text-xl">
                       {project.title}
                     </h3>
-                    <p className="mt-2 line-clamp-4 min-h-0 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">
-                      {project.desc}
+                    <p className="mt-2 line-clamp-3 min-h-0 flex-1 text-sm leading-relaxed text-neutral-600 sm:text-base">
+                      {project.summary}
                     </p>
+                    <Link
+                      href={`/gallery/${project.slug}`}
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-asset underline-offset-4 hover:underline"
+                    >
+                      Case study
+                      <FaArrowRight className="h-3 w-3 shrink-0" aria-hidden />
+                    </Link>
                   </div>
                 </div>
               </article>

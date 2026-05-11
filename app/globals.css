@@ -141,7 +141,8 @@ body {
    */
   .about-hero-unified,
   .services-page-hero,
-  .contact-page-hero {
+  .contact-page-hero,
+  .gallery-page-hero {
     position: relative;
     isolation: isolate;
     background: linear-gradient(
@@ -163,7 +164,8 @@ body {
 
   .about-hero-unified::after,
   .services-page-hero::after,
-  .contact-page-hero::after {
+  .contact-page-hero::after,
+  .gallery-page-hero::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -179,7 +181,8 @@ body {
   ) {
     .about-hero-unified,
     .services-page-hero,
-    .contact-page-hero {
+    .contact-page-hero,
+    .gallery-page-hero {
       background: linear-gradient(
         to bottom in oklch,
         var(--color-primary-900) 0%,
