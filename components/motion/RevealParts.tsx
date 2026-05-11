@@ -69,22 +69,15 @@ export function RevealParts({
       });
     }, root);
 
+    /** Only jump to complete if ScrollTrigger already reports past the start line.
+     * Avoid a loose viewport-rect check — it can complete the timeline while content
+     * is only peeking in, so the stagger never reads as visible. */
     const snapIfAlreadyVisible = () => {
       ScrollTrigger.refresh();
       const st = tl.scrollTrigger;
       if (!st) return;
       st.update();
-      if (st.progress > 0) {
-        tl.progress(1);
-        return;
-      }
-      const r = root.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const navReserve = 72;
-      const intersectsViewport = r.top < vh - navReserve && r.bottom > navReserve;
-      if (intersectsViewport) {
-        tl.progress(1);
-      }
+      if (st.progress > 0) tl.progress(1);
     };
 
     requestAnimationFrame(() => {

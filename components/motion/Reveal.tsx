@@ -56,17 +56,7 @@ export function Reveal({ children, className = "", delayMs = 0, triggerStart }: 
       const st = tween.scrollTrigger;
       if (!st) return;
       st.update();
-      if (st.progress > 0) {
-        tween.progress(1);
-        return;
-      }
-      const r = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const navReserve = 72;
-      const intersectsViewport = r.top < vh - navReserve && r.bottom > navReserve;
-      if (intersectsViewport) {
-        tween.progress(1);
-      }
+      if (st.progress > 0) tween.progress(1);
     };
 
     requestAnimationFrame(() => {
