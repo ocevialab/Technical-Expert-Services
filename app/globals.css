@@ -137,6 +137,27 @@ body {
   }
 
   /**
+   * Full-bleed marketing heroes (gallery, about, services, contact): wash the photo stack
+   * into the next section. Taller band + soft stops so the blend starts well above the fold line.
+   */
+  .hero-fade-to-home-band {
+    pointer-events: none;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 5;
+    height: clamp(9rem, 44vw, 28rem);
+    background: linear-gradient(
+      to top,
+      var(--color-home-blue-soft) 0%,
+      color-mix(in srgb, var(--color-home-blue-soft) 72%, transparent) 14%,
+      color-mix(in srgb, var(--color-home-blue-soft) 35%, transparent) 40%,
+      color-mix(in srgb, var(--color-home-blue-soft) 8%, transparent) 68%,
+      transparent 100%
+    );
+  }
+
+  /**
    * Inner marketing heroes (About, Services, Contact): same vertical gradient, OKLCH when supported, + grain.
    */
   .about-hero-unified,

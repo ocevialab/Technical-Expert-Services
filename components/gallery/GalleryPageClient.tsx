@@ -27,7 +27,7 @@ export function GalleryPageClient() {
 
   return (
     <section
-      className={`home-band-a px-8 pb-16 pt-[calc(1.5rem+1px)] sm:px-10 sm:pb-20 sm:pt-[calc(2rem+1px)] lg:px-14 xl:px-16`}
+      className={`home-band-a -mt-px px-8 pb-16 pt-[calc(1.5rem+1px)] sm:px-10 sm:pb-20 sm:pt-[calc(2rem+1px)] lg:px-14 xl:px-16`}
     >
       <div className="w-full">
         <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

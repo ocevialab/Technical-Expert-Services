@@ -70,6 +70,7 @@ export default function ContactPageClient() {
             aria-hidden
           />
         </div>
+        <div className="hero-fade-to-home-band" aria-hidden />
         <RevealParts triggerStart={REVEAL_START} className="relative z-10">
           <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_32px_rgba(5,31,50,0.72),0_1px_6px_rgba(5,31,50,0.55)]">
             <p
