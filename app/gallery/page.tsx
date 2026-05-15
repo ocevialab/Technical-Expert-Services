@@ -69,6 +69,8 @@ export default function GalleryPage() {
       </section>
 
       <GalleryPageClient />
+
+      <div className="home-footer-bridge w-full shrink-0" aria-hidden />
     </>
   );
 }
