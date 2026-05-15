@@ -4,7 +4,6 @@ import {
   FaInstagram,
   FaTiktok,
   FaWhatsapp,
-  FaXTwitter,
 } from "react-icons/fa6";
 import { SiteLogo } from "@/components/SiteLogo";
 import { site, whatsappHref } from "@/lib/site";
@@ -118,9 +117,6 @@ export default function Footer() {
               </SocialIcon>
               <SocialIcon href={whatsappHref} label="WhatsApp">
                 <FaWhatsapp className="h-4 w-4" aria-hidden />
-              </SocialIcon>
-              <SocialIcon href={social.x} label="X">
-                <FaXTwitter className="h-4 w-4" aria-hidden />
               </SocialIcon>
               <SocialIcon href={social.tiktok} label="TikTok">
                 <FaTiktok className="h-4 w-4" aria-hidden />

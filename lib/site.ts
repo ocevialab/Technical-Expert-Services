@@ -22,7 +22,6 @@ export const site = {
   social: {
     facebook: "https://www.facebook.com/technicalexpertuae",
     instagram: "https://www.instagram.com/technicalexpertuae/",
-    x: "",
     tiktok: "https://www.tiktok.com/@technicalexpertuae",
   },
 } as const;
