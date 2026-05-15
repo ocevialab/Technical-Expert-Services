@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { SiteLogo } from "@/components/SiteLogo";
 import { site } from "@/lib/site";
 
 const SCROLL_DIR_THRESHOLD = 8;
@@ -33,26 +34,6 @@ const navLinks = [
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact Us" },
 ];
-
-function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden className={`shrink-0 ${className ?? "text-brand-asset"}`}>
-      <circle cx="16" cy="16" r="3" fill="currentColor" />
-      {Array.from({ length: 12 }).map((_, i) => (
-        <rect
-          key={i}
-          x="15"
-          y="2"
-          width="2"
-          height="8"
-          rx="1"
-          fill="currentColor"
-          transform={`rotate(${i * 30} 16 16)`}
-        />
-      ))}
-    </svg>
-  );
-}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -164,7 +145,7 @@ export default function Navbar() {
           className="flex min-w-0 max-w-[min(100%,14rem)] shrink items-center gap-2 sm:max-w-[18rem] md:max-w-none"
           onClick={() => setMenuOpen(false)}
         >
-          <LogoMark className={`transition-colors duration-700 ease-out motion-reduce:transition-none ${glassHeroNav ? "text-white" : "text-brand-asset"}`} />
+          <SiteLogo size={36} priority />
           <span
             className={`text-left text-sm font-normal leading-snug tracking-tight transition-colors duration-700 ease-out motion-reduce:transition-none sm:text-base md:text-lg ${glassHeroNav ? "text-white" : "text-brand-navy"}`}
           >

@@ -6,6 +6,7 @@ import {
   FaWhatsapp,
   FaXTwitter,
 } from "react-icons/fa6";
+import { SiteLogo } from "@/components/SiteLogo";
 import { site, whatsappHref } from "@/lib/site";
 
 const pageLinks = [
@@ -27,33 +28,6 @@ const legalLinks = [
   { href: "/terms", label: "Terms of service" },
   { href: "/cookies", label: "Cookies" },
 ];
-
-function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden
-      className={`shrink-0 ${className ?? "text-white"}`}
-    >
-      <circle cx="16" cy="16" r="3" fill="currentColor" />
-      {Array.from({ length: 12 }).map((_, i) => (
-        <rect
-          key={i}
-          x="15"
-          y="2"
-          width="2"
-          height="8"
-          rx="1"
-          fill="currentColor"
-          transform={`rotate(${i * 30} 16 16)`}
-        />
-      ))}
-    </svg>
-  );
-}
 
 function SocialIcon({
   href,
@@ -126,7 +100,7 @@ export default function Footer() {
               href="/"
               className="inline-flex items-center gap-3 rounded-xl outline-offset-4"
             >
-              <LogoMark />
+              <SiteLogo size={44} />
               <span className="text-lg font-semibold tracking-tight text-white">
                 {site.brand}
               </span>

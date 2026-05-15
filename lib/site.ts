@@ -1,14 +1,14 @@
-/** Shared marketing copy & contact placeholders — replace with real details for production. */
+/** Shared marketing copy & contact details. */
 export const site = {
   brand: "Technical Expert Services",
   brandFull: "Painting, plumbing & property care across the UAE",
   tagline: "Expert workmanship. Clear quotes. One trusted team.",
   description:
     "Technical Expert Services — professional painting and plumbing across the UAE: villas, apartments, offices, and commercial spaces. Fast quotes by phone or WhatsApp.",
-  phoneDisplay: "+971 50 123 4567",
-  phoneTel: "+971501234567",
-  whatsappDigits: "971501234567",
-  email: "info@technicalexpertservices.ae",
+  phoneDisplay: "+971 52 587 6848",
+  phoneTel: "+971525876848",
+  whatsappDigits: "971525876848",
+  email: "technicalexpertuae@gmail.com",
   areas: "Dubai, Sharjah, Ajman, JVC, Business Bay & more",
   /** Home about teaser — lead paragraph under headline (company, not services list). */
   aboutTeaserIntro:
@@ -20,10 +20,10 @@ export const site = {
    * Optional social profile URLs for the footer. Leave empty to show a muted icon (add links when ready).
    */
   social: {
-    facebook: "",
-    instagram: "",
+    facebook: "https://www.facebook.com/technicalexpertuae",
+    instagram: "https://www.instagram.com/technicalexpertuae/",
     x: "",
-    tiktok: "",
+    tiktok: "https://www.tiktok.com/@technicalexpertuae",
   },
 } as const;
 
