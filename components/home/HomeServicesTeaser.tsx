@@ -10,69 +10,83 @@ import { site, whatsappHref } from "@/lib/site";
 
 const REVEAL_START = "top bottom-=28%";
 
+/** Public URL for a filename in `public/assets/` (handles spaces, `&`, etc.). */
+function assetUrl(filename: string) {
+  return `/assets/${encodeURIComponent(filename)}`;
+}
+
 const services = [
   {
     title: "Interior & exterior painting",
     desc: "Villas, apartments, and offices — prep, premium coatings, and clean handovers that respect your finishes.",
     href: "/services#painting",
+    imageSrc: assetUrl("Interior & exterior painting.jpg"),
     imagePosition: "object-[center_35%]" as const,
-    imageAlt: "Interior painting and finishing work",
+    imageAlt: "Interior and exterior painting — prep, rollers, and protected finishes",
   },
   {
     title: "Plumbing repair & installs",
     desc: "Leaks, drains, wet rooms, pumps, and tanks. Licensed work with clear scopes and tidy sites.",
     href: "/services#plumbing",
+    imageSrc: assetUrl("Plumbing repair & installs.jpg"),
     imagePosition: "object-[center_55%]" as const,
-    imageAlt: "Plumbing and property maintenance",
+    imageAlt: "Plumber repairing pipework under a kitchen sink",
   },
   {
     title: "Villa & apartment programmes",
     desc: "Move-in refreshes, landlord turnovers, and full-building cycles — phased so you can keep living or working on site.",
     href: "/services#painting",
+    imageSrc: assetUrl("Villa & apartment programmes.jpg"),
     imagePosition: "object-[center_30%]" as const,
-    imageAlt: "Villa and apartment painting project",
+    imageAlt: "Villa and apartment maintenance and painting programme on site",
   },
   {
     title: "Leak tracing & concealed lines",
     desc: "Ceiling and wall leaks traced with minimal opening, pressure-tested repairs, and tidy reinstatement.",
     href: "/services#plumbing",
+    imageSrc: assetUrl("Leak tracing & concealed lines.jpg"),
     imagePosition: "object-[center_50%]" as const,
-    imageAlt: "Leak detection and pipe repair",
+    imageAlt: "Technician locating a concealed pipe leak with detection equipment",
   },
   {
     title: "Drain & blockage clearing",
     desc: "Kitchen, bathroom, and main lines cleared with the right equipment — including stubborn grease and scale build-up.",
     href: "/services#plumbing",
+    imageSrc: assetUrl("Drain & blockage clearing.jpg"),
     imagePosition: "object-[center_60%]" as const,
-    imageAlt: "Drain cleaning and plumbing service",
+    imageAlt: "Professional drain clearing with cable equipment at a floor drain",
   },
   {
     title: "Water heaters & wet-area fixtures",
     desc: "Heaters, mixers, WC sets, siliconing, and concealed cisterns — coordinated with your electrician where needed.",
     href: "/services#plumbing",
+    imageSrc: assetUrl("Water heaters & wet-area fixtures.jpg"),
     imagePosition: "object-[center_42%]" as const,
-    imageAlt: "Bathroom and water heater plumbing",
+    imageAlt: "Water heater, utility sink, and laundry wet area",
   },
   {
     title: "Office & commercial painting",
     desc: "Evening and weekend slots, low-odour options, and clear cordoning so shops and offices stay presentable.",
     href: "/services#painting",
+    imageSrc: assetUrl("Office & commercial painting.jpg"),
     imagePosition: "object-[center_38%]" as const,
-    imageAlt: "Commercial interior painting",
+    imageAlt: "Commercial office painting in progress with crew and site protection",
   },
   {
     title: "Emergency response",
     desc: "Active leaks and blockages get priority — call or WhatsApp for same-day support across our service areas.",
     href: "/contact",
+    imageSrc: assetUrl("Emergency response.jpg"),
     imagePosition: "object-[center_45%]" as const,
-    imageAlt: "Trades team on a residential project",
+    imageAlt: "Emergency plumbing repair under a kitchen sink",
   },
   {
     title: "Planned maintenance",
     desc: "Recurring checks and touch-ups so paint systems and pipework stay reliable between handovers.",
     href: "/contact",
+    imageSrc: assetUrl("Planned_maintenance.jpg"),
     imagePosition: "object-[center_40%]" as const,
-    imageAlt: "Property care and upkeep",
+    imageAlt: "Planned maintenance inspection on piping with checklist",
   },
 ] as const;
 
@@ -184,7 +198,7 @@ export function HomeServicesTeaser() {
               </div>
             </article>
 
-            {services.map(({ title, desc, href, imagePosition, imageAlt }) => (
+            {services.map(({ title, desc, href, imageSrc, imagePosition, imageAlt }) => (
               <article
                 key={title}
                 data-reveal
@@ -196,7 +210,7 @@ export function HomeServicesTeaser() {
                 </div>
                 <div className="relative mt-auto h-44 w-full shrink-0 border-t border-primary-100 bg-primary-50">
                   <Image
-                    src="/assets/bg.jpg"
+                    src={imageSrc}
                     alt={imageAlt}
                     fill
                     sizes="(max-width: 640px) 95vw, 360px"
