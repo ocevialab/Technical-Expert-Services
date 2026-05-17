@@ -77,20 +77,16 @@ export default function AboutPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[82%_center] opacity-[0.52] sm:object-[72%_center] lg:object-right"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 18%, rgba(0,0,0,0.75) 36%, black 52%)",
-              maskSize: "100% 100%",
-              WebkitMaskSize: "100% 100%",
-            }}
+            className="object-cover object-[center_48%] opacity-[0.78] sm:object-center lg:object-[center_42%]"
+          />
+          <div
+            className="absolute inset-0 bg-linear-to-b from-brand-navy/42 via-brand-navy/18 to-brand-navy/52"
+            aria-hidden
           />
         </div>
         <div className="hero-fade-to-home-band" aria-hidden />
         <RevealParts triggerStart={REVEAL_ON_ENTER} className="relative z-10">
-          <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_20px_rgba(5,31,50,0.45)]">
+          <div className="relative mx-auto max-w-3xl [text-shadow:0_2px_28px_rgba(5,31,50,0.65),0_1px_8px_rgba(5,31,50,0.5)]">
             <p
               data-reveal
               className="text-xs font-semibold uppercase tracking-widest text-white/95 sm:text-sm"
