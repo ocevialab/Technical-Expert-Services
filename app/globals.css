@@ -246,3 +246,26 @@ body {
     transform: translateX(0);
   }
 }
+
+/* Floating WhatsApp: subtle float + scale (calm loop; disabled under reduced-motion). */
+@keyframes whatsapp-soft {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+.floating-whatsapp-icon {
+  animation: whatsapp-soft 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-whatsapp-icon {
+    animation: none;
+    will-change: auto;
+  }
+}
