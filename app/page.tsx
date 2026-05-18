@@ -5,7 +5,7 @@ import { HomeReviews } from "@/components/home/HomeReviews";
 import { HomeServicesTeaser } from "@/components/home/HomeServicesTeaser";
 import { HeroIntroReveal } from "@/components/motion/HeroIntroReveal";
 import { HeroParallaxBg } from "@/components/motion/HeroParallaxBg";
-import { site, whatsappHref } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const tickerItems = [
   "INTERIOR PAINTING",
@@ -45,14 +45,6 @@ export default function HomePage() {
             >
               Get Free Quote
             </Link>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full border-2 border-white bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-brand-navy sm:flex-none"
-            >
-              WhatsApp Us
-            </a>
             <a
               href={site.phoneTel}
               className="inline-flex min-h-[48px] min-w-[140px] flex-1 items-center justify-center rounded-full border-2 border-white/50 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 sm:flex-none"
